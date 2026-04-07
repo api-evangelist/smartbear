@@ -7,8 +7,8 @@ apis:
     tags:
       - API Design
       - API Documentation
-      - OpenAPI
       - Collaboration
+      - OpenAPI
     humanURL: https://swagger.io/product/
     properties:
       - url: https://support.smartbear.com/swaggerhub/docs/en/index.html
@@ -39,9 +39,9 @@ apis:
   - aid: smartbear:pactflow
     name: PactFlow
     tags:
-      - Contract Testing
       - API Testing
       - CI/CD
+      - Contract Testing
     humanURL: https://pactflow.io/
     properties:
       - url: https://docs.pactflow.io/
@@ -54,10 +54,10 @@ apis:
 name: SmartBear
 tags:
   - API Design
-  - API Testing
   - API Documentation
-  - Monitoring
+  - API Testing
   - Governance
+  - Monitoring
   - Platform
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
