@@ -1,0 +1,1049 @@
+openapi: 3.0.3
+info:
+  title: SmartBear SwaggerHub API
+  description: >-
+    The SwaggerHub API provides programmatic access to manage API definitions,
+    domains, projects, and integrations on the SwaggerHub platform. It allows
+    teams to automate API lifecycle management including creating, updating,
+    publishing, and versioning APIs. The API also supports organization
+    management, member access control, and integration configuration with
+    third-party services.
+  version: 1.0.0
+  termsOfService: https://smartbear.com/terms-of-use/
+  contact:
+    name: SmartBear Support
+    url: https://support.smartbear.com/swaggerhub/
+  license:
+    name: SmartBear License
+    url: https://smartbear.com/terms-of-use/
+servers:
+  - url: https://api.swaggerhub.com
+    description: SwaggerHub SaaS
+tags:
+  - name: APIs
+    description: Manage API definitions and versions
+  - name: Domains
+    description: Manage reusable domain definitions
+  - name: Projects
+    description: Manage SwaggerHub projects
+  - name: Integrations
+    description: Manage API integrations with third-party services
+  - name: Organizations
+    description: Manage organizations and members
+security:
+  - ApiKeyAuth: []
+paths:
+  /apis/{owner}:
+    get:
+      operationId: getOwnerApis
+      summary: Get Owner APIs
+      description: Retrieves all APIs for a given owner (user or organization).
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username or organization name
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Page number for pagination
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+          description: Number of results per page
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [NAME, CREATED, UPDATED]
+          description: Sort field
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ASC, DESC]
+          description: Sort order
+      responses:
+        '200':
+          description: A list of APIs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApisJson'
+        '401':
+          description: Unauthorized
+  /apis/{owner}/{api}:
+    get:
+      operationId: getApiVersions
+      summary: Get API Versions
+      description: Returns the list of versions for a given API.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: API version list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApisJson'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+    post:
+      operationId: saveDefinition
+      summary: Create Or Update API Version
+      description: Creates a new API or updates an existing API version.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: false
+          schema:
+            type: string
+          description: API version identifier
+        - name: isPrivate
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: Set API visibility to private
+      requestBody:
+        required: true
+        content:
+          application/yaml:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: API updated
+        '201':
+          description: API created
+        '401':
+          description: Unauthorized
+    delete:
+      operationId: deleteApi
+      summary: Delete API
+      description: Deletes the specified API and all its versions.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: API deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+  /apis/{owner}/{api}/{version}:
+    get:
+      operationId: getDefinition
+      summary: Get API Definition
+      description: Retrieves the OpenAPI definition for a specific API version.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: API definition
+          content:
+            application/yaml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+    delete:
+      operationId: deleteApiVersion
+      summary: Delete API Version
+      description: Deletes a specific version of an API.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Version deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+  /apis/{owner}/{api}/{version}/swagger.yaml:
+    get:
+      operationId: downloadDefinitionYaml
+      summary: Download API Definition As YAML
+      description: Downloads the API definition as YAML format.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: YAML definition file
+          content:
+            application/yaml:
+              schema:
+                type: string
+  /apis/{owner}/{api}/{version}/swagger.json:
+    get:
+      operationId: downloadDefinitionJson
+      summary: Download API Definition As JSON
+      description: Downloads the API definition as JSON format.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: JSON definition file
+          content:
+            application/json:
+              schema:
+                type: object
+  /apis/{owner}/{api}/{version}/publish:
+    post:
+      operationId: publishApi
+      summary: Publish API Version
+      description: Publishes a specific version of an API.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: API version published
+        '401':
+          description: Unauthorized
+  /apis/{owner}/{api}/{version}/unpublish:
+    post:
+      operationId: unpublishApi
+      summary: Unpublish API Version
+      description: Unpublishes a specific version of an API.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: API version unpublished
+        '401':
+          description: Unauthorized
+  /apis/{owner}/{api}/{version}/default:
+    put:
+      operationId: setDefaultApiVersion
+      summary: Set Default API Version
+      description: Sets the specified version as the default for the API.
+      tags:
+        - APIs
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Default version set
+        '401':
+          description: Unauthorized
+  /apis/{owner}/{api}/{version}/integrations:
+    get:
+      operationId: getApiIntegrations
+      summary: Get API Integrations
+      description: Lists all integrations configured for an API version.
+      tags:
+        - Integrations
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of integrations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Integration'
+    post:
+      operationId: createApiIntegration
+      summary: Create API Integration
+      description: Creates a new integration for an API version.
+      tags:
+        - Integrations
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationConfig'
+      responses:
+        '201':
+          description: Integration created
+  /apis/{owner}/{api}/{version}/integrations/{integrationId}:
+    get:
+      operationId: getApiIntegration
+      summary: Get API Integration
+      description: Retrieves a specific integration configuration.
+      tags:
+        - Integrations
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Integration details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Integration'
+    put:
+      operationId: updateApiIntegration
+      summary: Update API Integration
+      description: Updates an existing integration configuration.
+      tags:
+        - Integrations
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationConfig'
+      responses:
+        '200':
+          description: Integration updated
+    delete:
+      operationId: deleteApiIntegration
+      summary: Delete API Integration
+      description: Deletes a specific integration.
+      tags:
+        - Integrations
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Integration deleted
+  /apis/{owner}/{api}/{version}/integrations/{integrationId}/execute:
+    post:
+      operationId: executeApiIntegration
+      summary: Execute API Integration
+      description: Manually triggers an integration execution.
+      tags:
+        - Integrations
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: api
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Integration executed
+  /domains/{owner}:
+    get:
+      operationId: getOwnerDomains
+      summary: Get Owner Domains
+      description: Retrieves all domains for a given owner.
+      tags:
+        - Domains
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: List of domains
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApisJson'
+  /domains/{owner}/{domain}/{version}:
+    get:
+      operationId: getDomainDefinition
+      summary: Get Domain Definition
+      description: Retrieves the definition for a specific domain version.
+      tags:
+        - Domains
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Domain definition
+          content:
+            application/yaml:
+              schema:
+                type: string
+    post:
+      operationId: saveDomainDefinition
+      summary: Create Or Update Domain
+      description: Creates or updates a domain definition.
+      tags:
+        - Domains
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/yaml:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Domain updated
+        '201':
+          description: Domain created
+    delete:
+      operationId: deleteDomainVersion
+      summary: Delete Domain Version
+      description: Deletes a specific domain version.
+      tags:
+        - Domains
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Domain version deleted
+  /orgs/{org}/members:
+    get:
+      operationId: getOrganizationMembers
+      summary: Get Organization Members
+      description: Retrieves all members of an organization.
+      tags:
+        - Organizations
+      parameters:
+        - name: org
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of organization members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+  /projects/{owner}:
+    get:
+      operationId: getOwnerProjects
+      summary: Get Owner Projects
+      description: Retrieves all projects for a given owner.
+      tags:
+        - Projects
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+    post:
+      operationId: createProject
+      summary: Create Project
+      description: Creates a new project for an owner.
+      tags:
+        - Projects
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /projects/{owner}/{project}:
+    get:
+      operationId: getProject
+      summary: Get Project
+      description: Retrieves a specific project.
+      tags:
+        - Projects
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    delete:
+      operationId: deleteProject
+      summary: Delete Project
+      description: Deletes a project.
+      tags:
+        - Projects
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project deleted
+  /projects/{owner}/{project}/apis:
+    post:
+      operationId: addApiToProject
+      summary: Add API To Project
+      description: Adds an API to a project.
+      tags:
+        - Projects
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                apiOwner:
+                  type: string
+                apiName:
+                  type: string
+                apiVersion:
+                  type: string
+      responses:
+        '200':
+          description: API added to project
+  /projects/{owner}/{project}/domains:
+    post:
+      operationId: addDomainToProject
+      summary: Add Domain To Project
+      description: Adds a domain to a project.
+      tags:
+        - Projects
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domainOwner:
+                  type: string
+                domainName:
+                  type: string
+                domainVersion:
+                  type: string
+      responses:
+        '200':
+          description: Domain added to project
+  /search:
+    get:
+      operationId: searchApis
+      summary: Search APIs
+      description: Searches the SwaggerHub public API catalog.
+      tags:
+        - APIs
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [NAME, CREATED, UPDATED]
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [ASC, DESC]
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApisJson'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    ApisJson:
+      type: object
+      properties:
+        offset:
+          type: integer
+        totalCount:
+          type: integer
+        apis:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiEntry'
+    ApiEntry:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        swaggerUrl:
+          type: string
+        url:
+          type: string
+        versions:
+          type: array
+          items:
+            type: string
+        owner:
+          type: string
+        isPrivate:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+    Integration:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        enabled:
+          type: boolean
+        config:
+          type: object
+    IntegrationConfig:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        enabled:
+          type: boolean
+        config:
+          type: object
+          additionalProperties: true
+    Member:
+      type: object
+      properties:
+        username:
+          type: string
+        role:
+          type: string
+          enum: [OWNER, COLLABORATOR, VIEWER]
+        active:
+          type: boolean
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        owner:
+          type: string
+        apis:
+          type: array
+          items:
+            type: string
+        domains:
+          type: array
+          items:
+            type: string
+        created:
+          type: string
+          format: date-time
+    ProjectRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string

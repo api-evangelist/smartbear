@@ -1,0 +1,135 @@
+title: SmartBear Vocabulary
+description: >-
+  Core terminology and concepts for the SmartBear API platform ecosystem,
+  encompassing SwaggerHub API design, ReadyAPI testing, PactFlow contract
+  testing, and cross-cutting API lifecycle management concepts.
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+  - term: SwaggerHub
+    definition: >-
+      SmartBear's integrated API design and documentation platform that brings
+      together the core capabilities of the open-source Swagger framework with
+      advanced capabilities to build, document, manage, and deploy APIs.
+    aliases:
+      - Swagger Studio
+    related:
+      - OpenAPI
+      - API Documentation
+      - API Design
+
+  - term: API Definition
+    definition: >-
+      An OpenAPI or Swagger specification document that describes an API's
+      endpoints, operations, parameters, request bodies, responses, and
+      authentication requirements.
+    related:
+      - OpenAPI
+      - Swagger
+      - YAML
+      - JSON
+
+  - term: API Version
+    definition: >-
+      A distinct iteration of an API definition identified by a semantic
+      version string. SwaggerHub supports multiple concurrent versions of
+      each API.
+    related:
+      - Versioning
+      - Lifecycle
+
+  - term: Domain
+    definition: >-
+      A reusable collection of OpenAPI component definitions (schemas, responses,
+      parameters, examples) that can be referenced across multiple API definitions
+      to promote consistency and reduce duplication.
+    related:
+      - Schemas
+      - Components
+      - Reuse
+
+  - term: Project
+    definition: >-
+      An organizational unit in SwaggerHub that groups related APIs and domains
+      together, enabling team-level access control and discovery of related
+      API definitions.
+    related:
+      - Organization
+      - Team
+      - Access Control
+
+  - term: Integration
+    definition: >-
+      A configured connection between SwaggerHub and a third-party service
+      (GitHub, Bitbucket, AWS API Gateway, Azure, etc.) that automates
+      synchronization of API definitions or triggers external workflows.
+    aliases:
+      - Webhook
+    related:
+      - CI/CD
+      - GitHub Sync
+      - AWS Gateway
+
+  - term: ReadyAPI
+    definition: >-
+      SmartBear's API quality platform for functional, security, and performance
+      testing of REST, SOAP, GraphQL, and other API types.
+    related:
+      - API Testing
+      - Functional Testing
+      - Performance Testing
+
+  - term: PactFlow
+    definition: >-
+      SmartBear's contract testing platform that ensures API changes do not
+      break consumer applications through bi-directional contract testing
+      using the Pact framework.
+    related:
+      - Contract Testing
+      - Consumer-Driven Contracts
+      - Pact
+
+  - term: Spectral Ruleset
+    definition: >-
+      A set of validation rules applied to API definitions to enforce naming
+      conventions, documentation standards, security requirements, and other
+      organizational guidelines.
+    related:
+      - Linting
+      - Governance
+      - Validation
+
+  - term: Publish
+    definition: >-
+      The lifecycle action that makes an API version publicly accessible and
+      locks it against unversioned edits, signaling that it is production-ready.
+    related:
+      - Lifecycle
+      - Version Management
+
+  - term: API Governance
+    definition: >-
+      The policies, processes, and tooling used to ensure consistency, quality,
+      security, and compliance across an organization's API portfolio.
+    related:
+      - Spectral
+      - Standards
+      - Compliance
+
+  - term: Owner
+    definition: >-
+      A SwaggerHub user or organization account that holds API definitions,
+      domains, and projects and controls access permissions.
+    related:
+      - Organization
+      - Team
+
+  - term: API Lifecycle
+    definition: >-
+      The complete sequence of stages an API goes through from design through
+      deprecation, including design, development, testing, publication,
+      versioning, and retirement.
+    related:
+      - Design First
+      - Versioning
+      - Deprecation

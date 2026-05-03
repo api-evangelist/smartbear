@@ -1,0 +1,88 @@
+{
+  "title": "SmartBear SwaggerHub API Structure",
+  "description": "Hierarchical structure of the SwaggerHub API resources and relationships",
+  "structure": {
+    "owner": {
+      "description": "A user or organization that owns API definitions",
+      "type": "entity",
+      "children": {
+        "apis": {
+          "description": "Collection of API definitions owned by this entity",
+          "type": "collection",
+          "children": {
+            "api": {
+              "description": "A single API definition with multiple versions",
+              "type": "entity",
+              "children": {
+                "versions": {
+                  "description": "Available version strings for this API",
+                  "type": "collection"
+                },
+                "definition": {
+                  "description": "The OpenAPI/Swagger definition content",
+                  "type": "artifact",
+                  "formats": ["yaml", "json"]
+                },
+                "integrations": {
+                  "description": "Third-party integrations configured for this API",
+                  "type": "collection",
+                  "children": {
+                    "integration": {
+                      "description": "A single integration configuration",
+                      "type": "entity",
+                      "properties": ["id", "name", "type", "enabled", "config"]
+                    }
+                  }
+                },
+                "lifecycle": {
+                  "description": "Lifecycle management operations",
+                  "type": "operations",
+                  "operations": ["publish", "unpublish", "setdefault"]
+                }
+              }
+            }
+          }
+        },
+        "domains": {
+          "description": "Reusable schema domains for shared component definitions",
+          "type": "collection",
+          "children": {
+            "domain": {
+              "description": "A reusable domain containing shared schemas and components",
+              "type": "entity",
+              "children": {
+                "versions": {
+                  "description": "Available domain versions",
+                  "type": "collection"
+                }
+              }
+            }
+          }
+        },
+        "projects": {
+          "description": "Organizational projects grouping related APIs and domains",
+          "type": "collection",
+          "children": {
+            "project": {
+              "description": "A project containing grouped APIs and domains",
+              "type": "entity",
+              "properties": ["id", "name", "description", "apis", "domains"],
+              "children": {
+                "members": {
+                  "description": "Project members and their access roles",
+                  "type": "collection"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "search": {
+      "description": "Global API catalog search across all public SwaggerHub APIs",
+      "type": "service",
+      "inputs": ["query", "limit", "page", "sort", "order"],
+      "outputs": ["apis"]
+    }
+  }
+}

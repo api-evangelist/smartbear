@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.swaggerhub.com/apis/myorg/payments-api/2.1.0/integrations",
+    "headers": {
+      "Authorization": "myApiKey123",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "GitHub Sync",
+      "type": "GITHUB",
+      "enabled": true,
+      "config": {
+        "repository": "myorg/payments-api-spec",
+        "branch": "main",
+        "outputFolder": "openapi/",
+        "syncMethod": "DIRECT_PUSH"
+      }
+    }
+  },
+  "response": {
+    "statusCode": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "Location": "https://api.swaggerhub.com/apis/myorg/payments-api/2.1.0/integrations/int-abc-123"
+    },
+    "body": {
+      "id": "int-abc-123",
+      "name": "GitHub Sync",
+      "type": "GITHUB",
+      "enabled": true,
+      "config": {
+        "repository": "myorg/payments-api-spec",
+        "branch": "main",
+        "outputFolder": "openapi/",
+        "syncMethod": "DIRECT_PUSH"
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+extends: spectral:oas
+rules:
+  # SmartBear API Naming Conventions
+  smartbear-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    message: "Operation ID '{{value}}' should use camelCase (e.g., getOwnerApis)"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  smartbear-path-kebab-case:
+    description: Path segments must use kebab-case or path parameter placeholders
+    message: "Path segment should use kebab-case"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(\\/([a-z][a-z0-9-]*|\\{[a-zA-Z][a-zA-Z0-9]*\\}))*$"
+
+  smartbear-operation-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' should use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z]*(\\s[A-Z][A-Za-z]*)*$"
+
+  smartbear-api-tags-required:
+    description: All operations must have at least one tag
+    message: "Operation must include at least one tag"
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  smartbear-response-200-defined:
+    description: All GET operations must define a 200 response
+    message: "GET operations must define a 200 success response"
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: truthy
+
+  smartbear-security-defined:
+    description: All operations should have security defined at spec or operation level
+    message: "Operations should define security requirements"
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          oneOf:
+            - required: [security]
+            - not:
+                required: [security]
+
+  smartbear-parameter-description:
+    description: All parameters should have descriptions
+    message: "Parameter '{{value}}' should include a description"
+    severity: warn
+    given: "$.paths[*][*].parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  smartbear-hierarchical-paths:
+    description: API paths should follow hierarchical owner/resource/id pattern
+    message: "Paths should follow /{owner}/{resource}/{id} hierarchy"
+    severity: info
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^\\/[a-z]"

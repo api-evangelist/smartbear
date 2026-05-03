@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/smartbear/json-schema/smartbear-integration-schema.json",
+  "title": "SmartBear Integration",
+  "description": "An integration configuration connecting SwaggerHub to a third-party service such as GitHub, Bitbucket, AWS, or CI/CD pipelines.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the integration"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the integration"
+    },
+    "type": {
+      "type": "string",
+      "description": "Integration type (e.g., GITHUB, BITBUCKET, AWS_GATEWAY, WEBHOOK)",
+      "enum": ["GITHUB", "BITBUCKET", "GITLAB", "AWS_GATEWAY", "AZURE", "APIGEE", "WEBHOOK", "PACTFLOW"]
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the integration is currently active"
+    },
+    "config": {
+      "type": "object",
+      "description": "Integration-specific configuration properties",
+      "additionalProperties": true
+    }
+  },
+  "required": ["name", "type"]
+}

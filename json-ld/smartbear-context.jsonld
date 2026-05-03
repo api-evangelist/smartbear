@@ -1,0 +1,56 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "smartbear": "https://api-evangelist.github.io/smartbear/vocab#",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "created": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "modified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "ApiDefinition": "schema:TechArticle",
+    "owner": {
+      "@id": "schema:author",
+      "@type": "@id"
+    },
+    "versions": "schema:version",
+    "isPrivate": {
+      "@id": "smartbear:isPrivate",
+      "@type": "xsd:boolean"
+    },
+    "tags": "schema:keywords",
+    "swaggerUrl": {
+      "@id": "schema:mainEntityOfPage",
+      "@type": "@id"
+    },
+
+    "Organization": "schema:Organization",
+    "Project": "schema:Project",
+    "Integration": "schema:SoftwareApplication",
+    "Domain": "schema:DefinedTerm",
+
+    "members": "schema:member",
+    "role": "schema:roleName",
+    "enabled": {
+      "@id": "smartbear:enabled",
+      "@type": "xsd:boolean"
+    },
+    "integrationType": "schema:additionalType",
+
+    "SwaggerHub": "schema:SoftwareApplication",
+    "ReadyAPI": "schema:SoftwareApplication",
+    "PactFlow": "schema:SoftwareApplication"
+  }
+}

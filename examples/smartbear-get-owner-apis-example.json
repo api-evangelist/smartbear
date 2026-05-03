@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.swaggerhub.com/apis/myorg",
+    "headers": {
+      "Authorization": "myApiKey123",
+      "Accept": "application/json"
+    },
+    "queryParameters": {
+      "page": 0,
+      "limit": 10,
+      "sort": "UPDATED",
+      "order": "DESC"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "offset": 0,
+      "totalCount": 3,
+      "apis": [
+        {
+          "name": "petstore",
+          "description": "A sample API that uses a pet store as an example",
+          "created": "2025-01-15T10:23:45Z",
+          "modified": "2026-04-20T14:30:00Z",
+          "swaggerUrl": "https://app.swaggerhub.com/apis/myorg/petstore/1.0.0",
+          "url": "https://api.swaggerhub.com/apis/myorg/petstore",
+          "versions": ["1.0.0", "1.1.0", "2.0.0"],
+          "owner": "myorg",
+          "isPrivate": false,
+          "tags": ["Pets", "Sample", "OpenAPI 3.0"]
+        },
+        {
+          "name": "payments-api",
+          "description": "Internal payments processing API",
+          "created": "2025-06-01T08:00:00Z",
+          "modified": "2026-03-10T16:45:00Z",
+          "swaggerUrl": "https://app.swaggerhub.com/apis/myorg/payments-api/2.1.0",
+          "url": "https://api.swaggerhub.com/apis/myorg/payments-api",
+          "versions": ["1.0.0", "2.0.0", "2.1.0"],
+          "owner": "myorg",
+          "isPrivate": true,
+          "tags": ["Payments", "Finance", "Internal"]
+        },
+        {
+          "name": "user-management",
+          "description": "API for managing user accounts and permissions",
+          "created": "2024-09-12T12:00:00Z",
+          "modified": "2026-02-28T09:15:00Z",
+          "swaggerUrl": "https://app.swaggerhub.com/apis/myorg/user-management/1.5.0",
+          "url": "https://api.swaggerhub.com/apis/myorg/user-management",
+          "versions": ["1.0.0", "1.5.0"],
+          "owner": "myorg",
+          "isPrivate": false,
+          "tags": ["Users", "Identity", "Management"]
+        }
+      ]
+    }
+  }
+}

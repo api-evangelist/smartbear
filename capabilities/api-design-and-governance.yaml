@@ -1,0 +1,293 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: SmartBear API Design And Governance
+  description: >-
+    Unified workflow capability for API design, documentation, and governance
+    using SmartBear's SwaggerHub platform. Supports API teams in discovering
+    existing APIs, managing API definitions through their lifecycle, enforcing
+    design standards via Spectral rulesets, and collaborating through projects
+    and integrations.
+  tags:
+    - SmartBear
+    - API Design
+    - API Governance
+    - SwaggerHub
+    - Documentation
+    - Collaboration
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SWAGGERHUB_API_KEY: SWAGGERHUB_API_KEY
+
+capability:
+  consumes:
+    - import: swaggerhub
+      location: ./shared/swaggerhub.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: smartbear-governance-api
+      description: Unified REST API for API design and governance workflows.
+      resources:
+        - path: /v1/apis/{owner}
+          name: apis
+          description: Browse and manage API definitions
+          operations:
+            - method: GET
+              name: get-owner-apis
+              description: List all APIs for an organization or user
+              call: "swaggerhub.get-owner-apis"
+              with:
+                owner: "rest.owner"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/apis/{owner}/{api}/versions
+          name: api-versions
+          description: Manage API versions
+          operations:
+            - method: GET
+              name: get-api-versions
+              description: Get all versions of a specific API
+              call: "swaggerhub.get-api-versions"
+              with:
+                owner: "rest.owner"
+                api: "rest.api"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/apis/{owner}/{api}/{version}/definition
+          name: api-definition
+          description: Access API definitions
+          operations:
+            - method: GET
+              name: get-definition
+              description: Retrieve the OpenAPI definition for a specific version
+              call: "swaggerhub.get-definition"
+              with:
+                owner: "rest.owner"
+                api: "rest.api"
+                version: "rest.version"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/apis/{owner}/{api}/{version}/publish
+          name: api-publish
+          description: Publish and lifecycle management
+          operations:
+            - method: POST
+              name: publish-api
+              description: Publish a specific API version
+              call: "swaggerhub.publish-api"
+              with:
+                owner: "rest.owner"
+                api: "rest.api"
+                version: "rest.version"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/apis/{owner}/{api}/{version}/integrations
+          name: integrations
+          description: Manage API integrations with CI/CD and third-party tools
+          operations:
+            - method: GET
+              name: get-api-integrations
+              description: List integrations for an API version
+              call: "swaggerhub.get-api-integrations"
+              with:
+                owner: "rest.owner"
+                api: "rest.api"
+                version: "rest.version"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+            - method: POST
+              name: create-api-integration
+              description: Create a new CI/CD or third-party integration
+              call: "swaggerhub.create-api-integration"
+              with:
+                owner: "rest.owner"
+                api: "rest.api"
+                version: "rest.version"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/domains/{owner}
+          name: domains
+          description: Manage reusable schema domains
+          operations:
+            - method: GET
+              name: get-owner-domains
+              description: List all domains for an owner
+              call: "swaggerhub.get-owner-domains"
+              with:
+                owner: "rest.owner"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{owner}
+          name: projects
+          description: Manage API projects
+          operations:
+            - method: GET
+              name: get-owner-projects
+              description: List all projects for an owner
+              call: "swaggerhub.get-owner-projects"
+              with:
+                owner: "rest.owner"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+            - method: POST
+              name: create-project
+              description: Create a new API project
+              call: "swaggerhub.create-project"
+              with:
+                owner: "rest.owner"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/search
+          name: search
+          description: Discover APIs in the SwaggerHub catalog
+          operations:
+            - method: GET
+              name: search-apis
+              description: Search the public SwaggerHub API catalog
+              call: "swaggerhub.search-apis"
+              with:
+                query: "rest.query"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: smartbear-governance-mcp
+      transport: http
+      description: MCP server for AI-assisted API design and governance.
+      tools:
+        - name: list-apis
+          description: List all API definitions for an organization or user in SwaggerHub
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "swaggerhub.get-owner-apis"
+          with:
+            owner: "tools.owner"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-api-versions
+          description: Get all available versions of a specific API
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "swaggerhub.get-api-versions"
+          with:
+            owner: "tools.owner"
+            api: "tools.api"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-api-definition
+          description: Retrieve the complete OpenAPI definition for a specific API version
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "swaggerhub.get-definition"
+          with:
+            owner: "tools.owner"
+            api: "tools.api"
+            version: "tools.version"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: publish-api-version
+          description: Publish a specific API version to make it publicly available
+          hints:
+            readOnly: false
+            idempotent: false
+          call: "swaggerhub.publish-api"
+          with:
+            owner: "tools.owner"
+            api: "tools.api"
+            version: "tools.version"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-api-catalog
+          description: Search the SwaggerHub public API catalog for existing APIs
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "swaggerhub.search-apis"
+          with:
+            query: "tools.query"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-api-integrations
+          description: List all CI/CD and third-party integrations configured for an API version
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "swaggerhub.get-api-integrations"
+          with:
+            owner: "tools.owner"
+            api: "tools.api"
+            version: "tools.version"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: create-api-integration
+          description: Configure a new CI/CD or third-party integration for an API
+          hints:
+            readOnly: false
+            idempotent: false
+          call: "swaggerhub.create-api-integration"
+          with:
+            owner: "tools.owner"
+            api: "tools.api"
+            version: "tools.version"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-domains
+          description: List all reusable schema domains for an owner
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "swaggerhub.get-owner-domains"
+          with:
+            owner: "tools.owner"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-projects
+          description: List all API projects organized by an owner
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "swaggerhub.get-owner-projects"
+          with:
+            owner: "tools.owner"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: create-project
+          description: Create a new API project to organize related APIs
+          hints:
+            readOnly: false
+            idempotent: false
+          call: "swaggerhub.create-project"
+          with:
+            owner: "tools.owner"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/smartbear/json-schema/smartbear-api-entry-schema.json",
+  "title": "SmartBear API Entry",
+  "description": "A single API definition entry in the SwaggerHub registry, including metadata, versions, and access properties.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the API"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the API"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the API was created"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the API was last modified"
+    },
+    "swaggerUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the SwaggerHub UI for this API"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Raw URL to the API definition"
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of available version strings"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Owner username or organization name"
+    },
+    "isPrivate": {
+      "type": "boolean",
+      "description": "Whether the API is private (true) or public (false)"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the API for discovery"
+    }
+  },
+  "required": ["name", "owner"]
+}
