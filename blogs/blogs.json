@@ -1,0 +1,13 @@
+{
+  "repo": "smartbear",
+  "feeds": [
+    {
+      "source": "https://smartbear.com/blog/",
+      "feed_url": "https://smartbear.com/blog/rss.xml",
+      "saved": 10,
+      "title": "SmartBear Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:36:27Z"
+}
