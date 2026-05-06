@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,147 +9,84 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: SmartBear
 providerId: smartbear
-publisherName: SmartBear
-serviceCategory: API
+publisherName: SmartBear Software, Inc.
+serviceCategory: API Design / Testing / Observability
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - API Design
-  - API Documentation
   - API Testing
-  - Contract Testing
-  - Governance
-  - Monitoring
-  - Platform
+  - Observability
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the SmartBear API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: 'FOCUS-aligned FinOps placeholder for SmartBear: portfolio of design, testing, and
+  observability tools sold per-product with contact-sales pricing; meters below describe the typical
+  invoice-line shape but unit prices are set per signed agreement.'
+sources:
+  - https://smartbear.com/
+notes: |
+  No unified public price list. Meters reflect the typical SmartBear invoice line items (per-product
+  seat / agent / project counts) but the actual unit prices come from each customer's order form.
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Contact Sales
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: SmartBear
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: API Design / Testing / Observability
   ProviderName: SmartBear
-  PublisherName: SmartBear
-  InvoiceIssuerName: SmartBear
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: SmartBear Software, Inc.
+  InvoiceIssuerName: SmartBear Software, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: swaggerhub_seats
+    description: Designer seats licensed in SwaggerHub / SwaggerHub Portal.
+    unit: seat
+    aggregation: max
+    dimensions:
+      - product
+      - environment
+  - name: readyapi_seats
+    description: ReadyAPI floating / named licenses.
+    unit: seat
+    aggregation: max
+    dimensions:
+      - product
+  - name: testcomplete_seats
+    description: TestComplete user / runtime licenses.
+    unit: seat
+    aggregation: max
+    dimensions:
+      - product
+  - name: bugsnag_events
+    description: BugSnag billable error / session events.
+    unit: event
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
+      - project
+      - environment
+  - name: alertsite_monitors
+    description: AlertSite synthetic monitor count.
+    unit: varies
+    aggregation: max
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: SwaggerHub API
-    baseURL: ''
-    tags:
-      - API Design
-      - API Documentation
-      - Collaboration
-      - OpenAPI
-      - Governance
-    serviceName: SwaggerHub API
-    serviceCategory: API
-  - name: ReadyAPI
-    baseURL: ''
-    tags:
-      - API Testing
-      - Performance Testing
-      - Security Testing
-      - Functional Testing
-    serviceName: ReadyAPI
-    serviceCategory: API
-  - name: PactFlow
-    baseURL: ''
-    tags:
-      - API Testing
-      - CI/CD
-      - Contract Testing
-      - Consumer-Driven Contracts
-    serviceName: PactFlow
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - location
+principles:
+  - name: Visibility
+    description: Aggregate seat / event / monitor counts from each product's admin console; SmartBear
+      does not provide a unified consumption export across the portfolio.
+  - name: Allocation
+    description: Allocate per product line and per consuming team by mapping each SwaggerHub project,
+      BugSnag project, or ReadyAPI seat to its owning engineering team.
+  - name: Optimization
+    description: Reclaim inactive SwaggerHub / ReadyAPI seats; tune BugSnag sampling and AlertSite
+      monitor cadence to keep event / monitor counts within tier caps.
+  - name: Accountability
+    description: API platform owner reconciles monthly per-product utilization against the annual
+      order forms and approves seat additions or product expansions.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
