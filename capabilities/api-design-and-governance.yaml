@@ -1,293 +1,589 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
   label: SmartBear API Design And Governance
-  description: >-
-    Unified workflow capability for API design, documentation, and governance
-    using SmartBear's SwaggerHub platform. Supports API teams in discovering
-    existing APIs, managing API definitions through their lifecycle, enforcing
-    design standards via Spectral rulesets, and collaborating through projects
-    and integrations.
+  description: Unified workflow capability for API design, documentation, and governance using SmartBear's SwaggerHub platform.
+    Supports API teams in discovering existing APIs, managing API definitions through their lifecycle, enforcing design standards
+    via Spectral rulesets, and collaborating through projects and integrations.
   tags:
-    - SmartBear
-    - API Design
-    - API Governance
-    - SwaggerHub
-    - Documentation
-    - Collaboration
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - SmartBear
+  - API Design
+  - API Governance
+  - SwaggerHub
+  - Documentation
+  - Collaboration
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SWAGGERHUB_API_KEY: SWAGGERHUB_API_KEY
-
+- namespace: env
+  keys:
+    SWAGGERHUB_API_KEY: SWAGGERHUB_API_KEY
 capability:
   consumes:
-    - import: swaggerhub
-      location: ./shared/swaggerhub.yaml
-
+  - type: http
+    namespace: swaggerhub
+    baseUri: https://api.swaggerhub.com
+    description: SwaggerHub REST API for managing API definitions and lifecycle
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{SWAGGERHUB_API_KEY}}'
+      placement: header
+    resources:
+    - name: apis
+      path: /apis/{owner}
+      description: Manage API definitions for an owner
+      operations:
+      - name: get-owner-apis
+        method: GET
+        description: Retrieve all APIs for a given owner
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+          description: Username or organization name
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number for pagination
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of results per page
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-versions
+      path: /apis/{owner}/{api}
+      description: Manage specific API versions
+      operations:
+      - name: get-api-versions
+        method: GET
+        description: Get all versions of an API
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: save-definition
+        method: POST
+        description: Create or update an API version
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: query
+          type: string
+          required: false
+        - name: isPrivate
+          in: query
+          type: boolean
+          required: false
+        body:
+          type: yaml
+          data:
+            definition: '{{tools.definition}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-api
+        method: DELETE
+        description: Delete an API and all its versions
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-definition
+      path: /apis/{owner}/{api}/{version}
+      description: Manage specific API version definitions
+      operations:
+      - name: get-definition
+        method: GET
+        description: Get the OpenAPI definition for a specific version
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-api-version
+        method: DELETE
+        description: Delete a specific API version
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-publish
+      path: /apis/{owner}/{api}/{version}/publish
+      description: Publish API versions
+      operations:
+      - name: publish-api
+        method: POST
+        description: Publish a specific version of an API
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: integrations
+      path: /apis/{owner}/{api}/{version}/integrations
+      description: Manage API integrations
+      operations:
+      - name: get-api-integrations
+        method: GET
+        description: List all integrations for an API version
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+      - name: create-api-integration
+        method: POST
+        description: Create a new integration for an API version
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            type: '{{tools.type}}'
+            enabled: '{{tools.enabled}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: domains
+      path: /domains/{owner}
+      description: Manage reusable domain definitions
+      operations:
+      - name: get-owner-domains
+        method: GET
+        description: Retrieve all domains for an owner
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects
+      path: /projects/{owner}
+      description: Manage SwaggerHub projects
+      operations:
+      - name: get-owner-projects
+        method: GET
+        description: Retrieve all projects for an owner
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+      - name: create-project
+        method: POST
+        description: Create a new project
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            description: '{{tools.description}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: search
+      path: /search
+      description: Search the SwaggerHub API catalog
+      operations:
+      - name: search-apis
+        method: GET
+        description: Search the public SwaggerHub API catalog
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+          description: Search query string
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        - name: page
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: smartbear-governance-api
-      description: Unified REST API for API design and governance workflows.
-      resources:
-        - path: /v1/apis/{owner}
-          name: apis
-          description: Browse and manage API definitions
-          operations:
-            - method: GET
-              name: get-owner-apis
-              description: List all APIs for an organization or user
-              call: "swaggerhub.get-owner-apis"
-              with:
-                owner: "rest.owner"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/apis/{owner}/{api}/versions
-          name: api-versions
-          description: Manage API versions
-          operations:
-            - method: GET
-              name: get-api-versions
-              description: Get all versions of a specific API
-              call: "swaggerhub.get-api-versions"
-              with:
-                owner: "rest.owner"
-                api: "rest.api"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/apis/{owner}/{api}/{version}/definition
-          name: api-definition
-          description: Access API definitions
-          operations:
-            - method: GET
-              name: get-definition
-              description: Retrieve the OpenAPI definition for a specific version
-              call: "swaggerhub.get-definition"
-              with:
-                owner: "rest.owner"
-                api: "rest.api"
-                version: "rest.version"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/apis/{owner}/{api}/{version}/publish
-          name: api-publish
-          description: Publish and lifecycle management
-          operations:
-            - method: POST
-              name: publish-api
-              description: Publish a specific API version
-              call: "swaggerhub.publish-api"
-              with:
-                owner: "rest.owner"
-                api: "rest.api"
-                version: "rest.version"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/apis/{owner}/{api}/{version}/integrations
-          name: integrations
-          description: Manage API integrations with CI/CD and third-party tools
-          operations:
-            - method: GET
-              name: get-api-integrations
-              description: List integrations for an API version
-              call: "swaggerhub.get-api-integrations"
-              with:
-                owner: "rest.owner"
-                api: "rest.api"
-                version: "rest.version"
-              outputParameters:
-                - type: array
-                  mapping: "$."
-            - method: POST
-              name: create-api-integration
-              description: Create a new CI/CD or third-party integration
-              call: "swaggerhub.create-api-integration"
-              with:
-                owner: "rest.owner"
-                api: "rest.api"
-                version: "rest.version"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/domains/{owner}
-          name: domains
-          description: Manage reusable schema domains
-          operations:
-            - method: GET
-              name: get-owner-domains
-              description: List all domains for an owner
-              call: "swaggerhub.get-owner-domains"
-              with:
-                owner: "rest.owner"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/projects/{owner}
-          name: projects
-          description: Manage API projects
-          operations:
-            - method: GET
-              name: get-owner-projects
-              description: List all projects for an owner
-              call: "swaggerhub.get-owner-projects"
-              with:
-                owner: "rest.owner"
-              outputParameters:
-                - type: array
-                  mapping: "$."
-            - method: POST
-              name: create-project
-              description: Create a new API project
-              call: "swaggerhub.create-project"
-              with:
-                owner: "rest.owner"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/search
-          name: search
-          description: Discover APIs in the SwaggerHub catalog
-          operations:
-            - method: GET
-              name: search-apis
-              description: Search the public SwaggerHub API catalog
-              call: "swaggerhub.search-apis"
-              with:
-                query: "rest.query"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: smartbear-governance-mcp
-      transport: http
-      description: MCP server for AI-assisted API design and governance.
-      tools:
-        - name: list-apis
-          description: List all API definitions for an organization or user in SwaggerHub
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "swaggerhub.get-owner-apis"
-          with:
-            owner: "tools.owner"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-api-versions
-          description: Get all available versions of a specific API
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "swaggerhub.get-api-versions"
-          with:
-            owner: "tools.owner"
-            api: "tools.api"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-api-definition
-          description: Retrieve the complete OpenAPI definition for a specific API version
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "swaggerhub.get-definition"
-          with:
-            owner: "tools.owner"
-            api: "tools.api"
-            version: "tools.version"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: publish-api-version
-          description: Publish a specific API version to make it publicly available
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "swaggerhub.publish-api"
-          with:
-            owner: "tools.owner"
-            api: "tools.api"
-            version: "tools.version"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: search-api-catalog
-          description: Search the SwaggerHub public API catalog for existing APIs
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "swaggerhub.search-apis"
-          with:
-            query: "tools.query"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-api-integrations
-          description: List all CI/CD and third-party integrations configured for an API version
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "swaggerhub.get-api-integrations"
-          with:
-            owner: "tools.owner"
-            api: "tools.api"
-            version: "tools.version"
-          outputParameters:
-            - type: array
-              mapping: "$."
-        - name: create-api-integration
-          description: Configure a new CI/CD or third-party integration for an API
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "swaggerhub.create-api-integration"
-          with:
-            owner: "tools.owner"
-            api: "tools.api"
-            version: "tools.version"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-domains
-          description: List all reusable schema domains for an owner
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "swaggerhub.get-owner-domains"
-          with:
-            owner: "tools.owner"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-projects
-          description: List all API projects organized by an owner
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "swaggerhub.get-owner-projects"
-          with:
-            owner: "tools.owner"
-          outputParameters:
-            - type: array
-              mapping: "$."
-        - name: create-project
-          description: Create a new API project to organize related APIs
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "swaggerhub.create-project"
-          with:
-            owner: "tools.owner"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: smartbear-governance-api
+    description: Unified REST API for API design and governance workflows.
+    resources:
+    - path: /v1/apis/{owner}
+      name: apis
+      description: Browse and manage API definitions
+      operations:
+      - method: GET
+        name: get-owner-apis
+        description: List all APIs for an organization or user
+        call: swaggerhub.get-owner-apis
+        with:
+          owner: rest.owner
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/versions
+      name: api-versions
+      description: Manage API versions
+      operations:
+      - method: GET
+        name: get-api-versions
+        description: Get all versions of a specific API
+        call: swaggerhub.get-api-versions
+        with:
+          owner: rest.owner
+          api: rest.api
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/definition
+      name: api-definition
+      description: Access API definitions
+      operations:
+      - method: GET
+        name: get-definition
+        description: Retrieve the OpenAPI definition for a specific version
+        call: swaggerhub.get-definition
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/publish
+      name: api-publish
+      description: Publish and lifecycle management
+      operations:
+      - method: POST
+        name: publish-api
+        description: Publish a specific API version
+        call: swaggerhub.publish-api
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/integrations
+      name: integrations
+      description: Manage API integrations with CI/CD and third-party tools
+      operations:
+      - method: GET
+        name: get-api-integrations
+        description: List integrations for an API version
+        call: swaggerhub.get-api-integrations
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: array
+          mapping: $.
+      - method: POST
+        name: create-api-integration
+        description: Create a new CI/CD or third-party integration
+        call: swaggerhub.create-api-integration
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/domains/{owner}
+      name: domains
+      description: Manage reusable schema domains
+      operations:
+      - method: GET
+        name: get-owner-domains
+        description: List all domains for an owner
+        call: swaggerhub.get-owner-domains
+        with:
+          owner: rest.owner
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{owner}
+      name: projects
+      description: Manage API projects
+      operations:
+      - method: GET
+        name: get-owner-projects
+        description: List all projects for an owner
+        call: swaggerhub.get-owner-projects
+        with:
+          owner: rest.owner
+        outputParameters:
+        - type: array
+          mapping: $.
+      - method: POST
+        name: create-project
+        description: Create a new API project
+        call: swaggerhub.create-project
+        with:
+          owner: rest.owner
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/search
+      name: search
+      description: Discover APIs in the SwaggerHub catalog
+      operations:
+      - method: GET
+        name: search-apis
+        description: Search the public SwaggerHub API catalog
+        call: swaggerhub.search-apis
+        with:
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: smartbear-governance-mcp
+    transport: http
+    description: MCP server for AI-assisted API design and governance.
+    tools:
+    - name: list-apis
+      description: List all API definitions for an organization or user in SwaggerHub
+      hints:
+        readOnly: true
+        openWorld: true
+      call: swaggerhub.get-owner-apis
+      with:
+        owner: tools.owner
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-api-versions
+      description: Get all available versions of a specific API
+      hints:
+        readOnly: true
+        openWorld: false
+      call: swaggerhub.get-api-versions
+      with:
+        owner: tools.owner
+        api: tools.api
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-api-definition
+      description: Retrieve the complete OpenAPI definition for a specific API version
+      hints:
+        readOnly: true
+        openWorld: false
+      call: swaggerhub.get-definition
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: publish-api-version
+      description: Publish a specific API version to make it publicly available
+      hints:
+        readOnly: false
+        idempotent: false
+      call: swaggerhub.publish-api
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-api-catalog
+      description: Search the SwaggerHub public API catalog for existing APIs
+      hints:
+        readOnly: true
+        openWorld: true
+      call: swaggerhub.search-apis
+      with:
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-api-integrations
+      description: List all CI/CD and third-party integrations configured for an API version
+      hints:
+        readOnly: true
+        openWorld: false
+      call: swaggerhub.get-api-integrations
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: array
+        mapping: $.
+    - name: create-api-integration
+      description: Configure a new CI/CD or third-party integration for an API
+      hints:
+        readOnly: false
+        idempotent: false
+      call: swaggerhub.create-api-integration
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-domains
+      description: List all reusable schema domains for an owner
+      hints:
+        readOnly: true
+        openWorld: false
+      call: swaggerhub.get-owner-domains
+      with:
+        owner: tools.owner
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-projects
+      description: List all API projects organized by an owner
+      hints:
+        readOnly: true
+        openWorld: false
+      call: swaggerhub.get-owner-projects
+      with:
+        owner: tools.owner
+      outputParameters:
+      - type: array
+        mapping: $.
+    - name: create-project
+      description: Create a new API project to organize related APIs
+      hints:
+        readOnly: false
+        idempotent: false
+      call: swaggerhub.create-project
+      with:
+        owner: tools.owner
+      outputParameters:
+      - type: object
+        mapping: $.
