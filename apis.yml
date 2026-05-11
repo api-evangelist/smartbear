@@ -119,6 +119,10 @@ common:
     url: json-ld/smartbear-context.jsonld
   - type: Vocabulary
     url: vocabulary/smartbear-vocabulary.yml
+  - type: Integrations
+    url: https://smartbear.com/integrations/
+integrations:
+  - name: logo
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
