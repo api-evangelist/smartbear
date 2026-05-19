@@ -11,7 +11,7 @@ description: >-
 url: >-
   https://raw.githubusercontent.com/api-evangelist/smartbear/refs/heads/main/apis.yml
 created: '2025-01-08'
-modified: '2026-05-02'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 tags:
   - API Design
@@ -121,6 +121,9 @@ common:
     url: vocabulary/smartbear-vocabulary.yml
   - type: Integrations
     url: https://smartbear.com/integrations/
+  - name: MCP Server
+    url: https://github.com/SmartBear/smartbear-mcp
+    type: MCPServer
 integrations:
   - name: logo
 maintainers:
