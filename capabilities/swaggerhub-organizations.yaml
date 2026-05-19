@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SmartBear SwaggerHub API — Organizations
+  description: 'SmartBear SwaggerHub API — Organizations. 1 operations. Lead operation: Get Organization Members. Self-contained
+    Naftiko capability covering one Smartbear business surface.'
+  tags:
+  - Smartbear
+  - Organizations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SMARTBEAR_API_KEY: SMARTBEAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: swaggerhub-organizations
+    baseUri: https://api.swaggerhub.com
+    description: SmartBear SwaggerHub API — Organizations business capability. Self-contained, no shared references.
+    resources:
+    - name: orgs-org-members
+      path: /orgs/{org}/members
+      operations:
+      - name: getorganizationmembers
+        method: GET
+        description: Get Organization Members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: org
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.SMARTBEAR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: swaggerhub-organizations-rest
+    port: 8080
+    description: REST adapter for SmartBear SwaggerHub API — Organizations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/orgs/{org}/members
+      name: orgs-org-members
+      description: REST surface for orgs-org-members.
+      operations:
+      - method: GET
+        name: getorganizationmembers
+        description: Get Organization Members
+        call: swaggerhub-organizations.getorganizationmembers
+        with:
+          org: rest.org
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: swaggerhub-organizations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SmartBear SwaggerHub API — Organizations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-organization-members
+      description: Get Organization Members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swaggerhub-organizations.getorganizationmembers
+      with:
+        org: tools.org
+      outputParameters:
+      - type: object
+        mapping: $.

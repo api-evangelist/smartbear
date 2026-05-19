@@ -1,0 +1,678 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SmartBear SwaggerHub API — APIs
+  description: 'SmartBear SwaggerHub API — APIs. 12 operations. Lead operation: Get Owner APIs. Self-contained Naftiko capability
+    covering one Smartbear business surface.'
+  tags:
+  - Smartbear
+  - APIs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SMARTBEAR_API_KEY: SMARTBEAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: swaggerhub-apis
+    baseUri: https://api.swaggerhub.com
+    description: SmartBear SwaggerHub API — APIs business capability. Self-contained, no shared references.
+    resources:
+    - name: apis-owner
+      path: /apis/{owner}
+      operations:
+      - name: getownerapis
+        method: GET
+        description: Get Owner APIs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          description: Username or organization name
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results per page
+        - name: sort
+          in: query
+          type: string
+          description: Sort field
+        - name: order
+          in: query
+          type: string
+          description: Sort order
+    - name: apis-owner-api
+      path: /apis/{owner}/{api}
+      operations:
+      - name: getapiversions
+        method: GET
+        description: Get API Versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+      - name: savedefinition
+        method: POST
+        description: Create Or Update API Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: query
+          type: string
+          description: API version identifier
+        - name: isPrivate
+          in: query
+          type: boolean
+          description: Set API visibility to private
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapi
+        method: DELETE
+        description: Delete API
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+    - name: apis-owner-api-version
+      path: /apis/{owner}/{api}/{version}
+      operations:
+      - name: getdefinition
+        method: GET
+        description: Get API Definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+      - name: deleteapiversion
+        method: DELETE
+        description: Delete API Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+    - name: apis-owner-api-version-default
+      path: /apis/{owner}/{api}/{version}/default
+      operations:
+      - name: setdefaultapiversion
+        method: PUT
+        description: Set Default API Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+    - name: apis-owner-api-version-publish
+      path: /apis/{owner}/{api}/{version}/publish
+      operations:
+      - name: publishapi
+        method: POST
+        description: Publish API Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+    - name: apis-owner-api-version-swagger.json
+      path: /apis/{owner}/{api}/{version}/swagger.json
+      operations:
+      - name: downloaddefinitionjson
+        method: GET
+        description: Download API Definition As JSON
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+    - name: apis-owner-api-version-swagger.yaml
+      path: /apis/{owner}/{api}/{version}/swagger.yaml
+      operations:
+      - name: downloaddefinitionyaml
+        method: GET
+        description: Download API Definition As YAML
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+    - name: apis-owner-api-version-unpublish
+      path: /apis/{owner}/{api}/{version}/unpublish
+      operations:
+      - name: unpublishapi
+        method: POST
+        description: Unpublish API Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+    - name: search
+      path: /search
+      operations:
+      - name: searchapis
+        method: GET
+        description: Search APIs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: Search query string
+          required: true
+        - name: limit
+          in: query
+          type: integer
+        - name: page
+          in: query
+          type: integer
+        - name: sort
+          in: query
+          type: string
+        - name: order
+          in: query
+          type: string
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.SMARTBEAR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: swaggerhub-apis-rest
+    port: 8080
+    description: REST adapter for SmartBear SwaggerHub API — APIs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/apis/{owner}
+      name: apis-owner
+      description: REST surface for apis-owner.
+      operations:
+      - method: GET
+        name: getownerapis
+        description: Get Owner APIs
+        call: swaggerhub-apis.getownerapis
+        with:
+          owner: rest.owner
+          page: rest.page
+          limit: rest.limit
+          sort: rest.sort
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}
+      name: apis-owner-api
+      description: REST surface for apis-owner-api.
+      operations:
+      - method: GET
+        name: getapiversions
+        description: Get API Versions
+        call: swaggerhub-apis.getapiversions
+        with:
+          owner: rest.owner
+          api: rest.api
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: savedefinition
+        description: Create Or Update API Version
+        call: swaggerhub-apis.savedefinition
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+          isPrivate: rest.isPrivate
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapi
+        description: Delete API
+        call: swaggerhub-apis.deleteapi
+        with:
+          owner: rest.owner
+          api: rest.api
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}
+      name: apis-owner-api-version
+      description: REST surface for apis-owner-api-version.
+      operations:
+      - method: GET
+        name: getdefinition
+        description: Get API Definition
+        call: swaggerhub-apis.getdefinition
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapiversion
+        description: Delete API Version
+        call: swaggerhub-apis.deleteapiversion
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/default
+      name: apis-owner-api-version-default
+      description: REST surface for apis-owner-api-version-default.
+      operations:
+      - method: PUT
+        name: setdefaultapiversion
+        description: Set Default API Version
+        call: swaggerhub-apis.setdefaultapiversion
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/publish
+      name: apis-owner-api-version-publish
+      description: REST surface for apis-owner-api-version-publish.
+      operations:
+      - method: POST
+        name: publishapi
+        description: Publish API Version
+        call: swaggerhub-apis.publishapi
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/swagger-json
+      name: apis-owner-api-version-swagger-json
+      description: REST surface for apis-owner-api-version-swagger.json.
+      operations:
+      - method: GET
+        name: downloaddefinitionjson
+        description: Download API Definition As JSON
+        call: swaggerhub-apis.downloaddefinitionjson
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/swagger-yaml
+      name: apis-owner-api-version-swagger-yaml
+      description: REST surface for apis-owner-api-version-swagger.yaml.
+      operations:
+      - method: GET
+        name: downloaddefinitionyaml
+        description: Download API Definition As YAML
+        call: swaggerhub-apis.downloaddefinitionyaml
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/unpublish
+      name: apis-owner-api-version-unpublish
+      description: REST surface for apis-owner-api-version-unpublish.
+      operations:
+      - method: POST
+        name: unpublishapi
+        description: Unpublish API Version
+        call: swaggerhub-apis.unpublishapi
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/search
+      name: search
+      description: REST surface for search.
+      operations:
+      - method: GET
+        name: searchapis
+        description: Search APIs
+        call: swaggerhub-apis.searchapis
+        with:
+          query: rest.query
+          limit: rest.limit
+          page: rest.page
+          sort: rest.sort
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: swaggerhub-apis-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SmartBear SwaggerHub API — APIs. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-owner-apis
+      description: Get Owner APIs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swaggerhub-apis.getownerapis
+      with:
+        owner: tools.owner
+        page: tools.page
+        limit: tools.limit
+        sort: tools.sort
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-api-versions
+      description: Get API Versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swaggerhub-apis.getapiversions
+      with:
+        owner: tools.owner
+        api: tools.api
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-api-version
+      description: Create Or Update API Version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: swaggerhub-apis.savedefinition
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+        isPrivate: tools.isPrivate
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-api
+      description: Delete API
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: swaggerhub-apis.deleteapi
+      with:
+        owner: tools.owner
+        api: tools.api
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-api-definition
+      description: Get API Definition
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swaggerhub-apis.getdefinition
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-api-version
+      description: Delete API Version
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: swaggerhub-apis.deleteapiversion
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-default-api-version
+      description: Set Default API Version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: swaggerhub-apis.setdefaultapiversion
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: publish-api-version
+      description: Publish API Version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: swaggerhub-apis.publishapi
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-api-definition-json
+      description: Download API Definition As JSON
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swaggerhub-apis.downloaddefinitionjson
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-api-definition-yaml
+      description: Download API Definition As YAML
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swaggerhub-apis.downloaddefinitionyaml
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unpublish-api-version
+      description: Unpublish API Version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: swaggerhub-apis.unpublishapi
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-apis
+      description: Search APIs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swaggerhub-apis.searchapis
+      with:
+        query: tools.query
+        limit: tools.limit
+        page: tools.page
+        sort: tools.sort
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.

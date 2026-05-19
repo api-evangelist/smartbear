@@ -1,0 +1,375 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SmartBear SwaggerHub API — Integrations
+  description: 'SmartBear SwaggerHub API — Integrations. 6 operations. Lead operation: Get API Integrations. Self-contained
+    Naftiko capability covering one Smartbear business surface.'
+  tags:
+  - Smartbear
+  - Integrations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SMARTBEAR_API_KEY: SMARTBEAR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: swaggerhub-integrations
+    baseUri: https://api.swaggerhub.com
+    description: SmartBear SwaggerHub API — Integrations business capability. Self-contained, no shared references.
+    resources:
+    - name: apis-owner-api-version-integrations
+      path: /apis/{owner}/{api}/{version}/integrations
+      operations:
+      - name: getapiintegrations
+        method: GET
+        description: Get API Integrations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+      - name: createapiintegration
+        method: POST
+        description: Create API Integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: apis-owner-api-version-integrations-integrationId
+      path: /apis/{owner}/{api}/{version}/integrations/{integrationId}
+      operations:
+      - name: getapiintegration
+        method: GET
+        description: Get API Integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        - name: integrationId
+          in: path
+          type: string
+          required: true
+      - name: updateapiintegration
+        method: PUT
+        description: Update API Integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        - name: integrationId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapiintegration
+        method: DELETE
+        description: Delete API Integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        - name: integrationId
+          in: path
+          type: string
+          required: true
+    - name: apis-owner-api-version-integrations-integrationId-execute
+      path: /apis/{owner}/{api}/{version}/integrations/{integrationId}/execute
+      operations:
+      - name: executeapiintegration
+        method: POST
+        description: Execute API Integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: api
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: path
+          type: string
+          required: true
+        - name: integrationId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.SMARTBEAR_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: swaggerhub-integrations-rest
+    port: 8080
+    description: REST adapter for SmartBear SwaggerHub API — Integrations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/apis/{owner}/{api}/{version}/integrations
+      name: apis-owner-api-version-integrations
+      description: REST surface for apis-owner-api-version-integrations.
+      operations:
+      - method: GET
+        name: getapiintegrations
+        description: Get API Integrations
+        call: swaggerhub-integrations.getapiintegrations
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapiintegration
+        description: Create API Integration
+        call: swaggerhub-integrations.createapiintegration
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/integrations/{integrationid}
+      name: apis-owner-api-version-integrations-integrationid
+      description: REST surface for apis-owner-api-version-integrations-integrationId.
+      operations:
+      - method: GET
+        name: getapiintegration
+        description: Get API Integration
+        call: swaggerhub-integrations.getapiintegration
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+          integrationId: rest.integrationId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateapiintegration
+        description: Update API Integration
+        call: swaggerhub-integrations.updateapiintegration
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+          integrationId: rest.integrationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapiintegration
+        description: Delete API Integration
+        call: swaggerhub-integrations.deleteapiintegration
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+          integrationId: rest.integrationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{owner}/{api}/{version}/integrations/{integrationid}/execute
+      name: apis-owner-api-version-integrations-integrationid-execute
+      description: REST surface for apis-owner-api-version-integrations-integrationId-execute.
+      operations:
+      - method: POST
+        name: executeapiintegration
+        description: Execute API Integration
+        call: swaggerhub-integrations.executeapiintegration
+        with:
+          owner: rest.owner
+          api: rest.api
+          version: rest.version
+          integrationId: rest.integrationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: swaggerhub-integrations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SmartBear SwaggerHub API — Integrations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-api-integrations
+      description: Get API Integrations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swaggerhub-integrations.getapiintegrations
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-api-integration
+      description: Create API Integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: swaggerhub-integrations.createapiintegration
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-api-integration
+      description: Get API Integration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: swaggerhub-integrations.getapiintegration
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+        integrationId: tools.integrationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-api-integration
+      description: Update API Integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: swaggerhub-integrations.updateapiintegration
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+        integrationId: tools.integrationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-api-integration
+      description: Delete API Integration
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: swaggerhub-integrations.deleteapiintegration
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+        integrationId: tools.integrationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-api-integration
+      description: Execute API Integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: swaggerhub-integrations.executeapiintegration
+      with:
+        owner: tools.owner
+        api: tools.api
+        version: tools.version
+        integrationId: tools.integrationId
+      outputParameters:
+      - type: object
+        mapping: $.
