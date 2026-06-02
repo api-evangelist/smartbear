@@ -2,12 +2,20 @@
   "repo": "smartbear",
   "feeds": [
     {
-      "source": "https://smartbear.com/blog/",
+      "source": "https://smartbear.com/blog/rss.xml",
       "feed_url": "https://smartbear.com/blog/rss.xml",
-      "title": "SmartBear Blog",
-      "saved": 45
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://community.smartbear.com/",
+      "feed_url": "https://community.smartbear.com/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 57,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 60,
+  "fetched": "2026-06-01T23:35:02Z"
 }
