@@ -1,10 +1,11 @@
 aid: smartbear
 name: SmartBear
-description: SmartBear is a software company that provides AI-powered tools for API lifecycle management including design,
-  testing, documentation, and governance. Their product portfolio includes SwaggerHub for API design and documentation, ReadyAPI
-  for API testing, PactFlow for contract testing, and other tools for software quality and performance. SmartBear's developer
-  API enables programmatic access to manage API definitions, automate lifecycle workflows, and integrate SwaggerHub with CI/CD
-  pipelines and third-party services.
+description: >-
+  SmartBear is a software company that provides AI-powered tools for API lifecycle management including design, testing,
+  documentation, and governance. Their product portfolio includes SwaggerHub for API design and documentation, ReadyAPI
+  for API testing, PactFlow for contract testing, and other tools for software quality and performance. SmartBear's
+  developer API enables programmatic access to manage API definitions, automate lifecycle workflows, and integrate
+  SwaggerHub with CI/CD pipelines and third-party services.
 url: https://raw.githubusercontent.com/api-evangelist/smartbear/refs/heads/main/apis.yml
 created: '2025-01-08'
 modified: '2026-05-19'
@@ -40,19 +41,13 @@ apis:
     type: GitHubRepository
   - url: https://openapi/smartbear-swaggerhub-openapi.yml
     type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/swaggerhub-apis.yaml
-  - type: NaftikoCapability
-    url: capabilities/swaggerhub-domains.yaml
-  - type: NaftikoCapability
-    url: capabilities/swaggerhub-integrations.yaml
-  - type: NaftikoCapability
-    url: capabilities/swaggerhub-organizations.yaml
-  - type: NaftikoCapability
-    url: capabilities/swaggerhub-projects.yaml
-  description: 'The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations
-    on the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating, publishing,
-    and versioning APIs. Base URL: https://api.swaggerhub.com. Authentication via API key in the Authorization header.'
+  - url: graphql/smartbear-graphql.md
+    type: GraphQL
+  description: >-
+    The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations on
+    the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating,
+    publishing, and versioning APIs. Base URL: https://api.swaggerhub.com. Authentication via API key in the
+    Authorization header.
 - aid: smartbear:readyapi
   name: ReadyAPI
   tags:
@@ -66,9 +61,10 @@ apis:
     type: Documentation
   - url: https://github.com/SmartBear/readyapi4j
     type: GitHubRepository
-  description: ReadyAPI is SmartBear's API quality platform for functional, security, and performance testing. It supports
-    RESTful, GraphQL, and other API standards, and is used by more than 250,000 users running more than 2 million tests per
-    month.
+  description: >-
+    ReadyAPI is SmartBear's API quality platform for functional, security, and performance testing. It supports
+    RESTful, GraphQL, and other API standards, and is used by more than 250,000 users running more than 2 million
+    tests per month.
 - aid: smartbear:pactflow
   name: PactFlow
   tags:
@@ -82,9 +78,10 @@ apis:
     type: Documentation
   - url: https://developer.smartbear.com/pactflow/default/pactflow_saas_api
     type: APIReference
-  description: 'PactFlow is SmartBear''s contract testing platform that ensures API changes do not break consumer applications.
-    It integrates with SwaggerHub for bi-directional contract testing and uses REST principles with predictable resource-oriented
-    URLs. Base URL: https://{account}.pactflow.io.'
+  description: >-
+    PactFlow is SmartBear's contract testing platform that ensures API changes do not break consumer applications. It
+    integrates with SwaggerHub for bi-directional contract testing and uses REST principles with predictable
+    resource-oriented URLs. Base URL: https://{account}.pactflow.io.
 common:
 - type: LinkedIn
   url: https://www.linkedin.com/company/smartbear
