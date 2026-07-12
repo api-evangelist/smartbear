@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://trust.smartbear.com/
+url: https://trust.smartbear.com/
+certifications:
+- SOC 2
+- ISO 27001
+- GDPR
+evidence:
+- source: https://trust.smartbear.com/
+  keywords:
+  - soc 2
+  - iso/iec 27001
+  - trust center
+  - gdpr

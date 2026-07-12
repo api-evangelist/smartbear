@@ -83,6 +83,12 @@ apis:
     integrates with SwaggerHub for bi-directional contract testing and uses REST principles with predictable
     resource-oriented URLs. Base URL: https://{account}.pactflow.io.
 common:
+- type: TrustCenter
+  url: security/smartbear-trust-center.yml
+- type: DomainSecurity
+  url: security/smartbear-domain-security.yml
+- type: Authentication
+  url: authentication/smartbear-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/smartbear
 - type: Website
