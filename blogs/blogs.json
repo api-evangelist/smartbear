@@ -5,17 +5,14 @@
       "source": "https://smartbear.com/blog/rss.xml",
       "feed_url": "https://smartbear.com/blog/rss.xml",
       "title": "",
-      "saved": 8,
+      "saved": 0,
       "method": "feed"
     },
     {
       "source": "https://community.smartbear.com/",
-      "feed_url": "https://community.smartbear.com/",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "error": "HTTPError"
     }
   ],
-  "post_count": 72,
-  "fetched": "2026-06-27T12:03:07Z"
+  "post_count": 74,
+  "fetched": "2026-07-11T11:50:51Z"
 }
