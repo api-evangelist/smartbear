@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: SmartBear SwaggerHub APIs Organizations API
+  description: The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations on the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating, publishing, and versioning APIs. The API also supports organization management, member access control, and integration configuration with third-party services.
+  version: 1.0.0
+  termsOfService: https://smartbear.com/terms-of-use/
+  contact:
+    name: SmartBear Support
+    url: https://support.smartbear.com/swaggerhub/
+  license:
+    name: SmartBear License
+    url: https://smartbear.com/terms-of-use/
+servers:
+- url: https://api.swaggerhub.com
+  description: SwaggerHub SaaS
+security:
+- ApiKeyAuth: []
+tags:
+- name: Organizations
+  description: Manage organizations and members
+paths:
+  /orgs/{org}/members:
+    get:
+      operationId: getOrganizationMembers
+      summary: Get Organization Members
+      description: Retrieves all members of an organization.
+      tags:
+      - Organizations
+      parameters:
+      - name: org
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of organization members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+components:
+  schemas:
+    Member:
+      type: object
+      properties:
+        username:
+          type: string
+        role:
+          type: string
+          enum:
+          - OWNER
+          - COLLABORATOR
+          - VIEWER
+        active:
+          type: boolean
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization

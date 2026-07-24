@@ -1,0 +1,219 @@
+openapi: 3.0.3
+info:
+  title: SmartBear SwaggerHub APIs Projects API
+  description: The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations on the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating, publishing, and versioning APIs. The API also supports organization management, member access control, and integration configuration with third-party services.
+  version: 1.0.0
+  termsOfService: https://smartbear.com/terms-of-use/
+  contact:
+    name: SmartBear Support
+    url: https://support.smartbear.com/swaggerhub/
+  license:
+    name: SmartBear License
+    url: https://smartbear.com/terms-of-use/
+servers:
+- url: https://api.swaggerhub.com
+  description: SwaggerHub SaaS
+security:
+- ApiKeyAuth: []
+tags:
+- name: Projects
+  description: Manage SwaggerHub projects
+paths:
+  /projects/{owner}:
+    get:
+      operationId: getOwnerProjects
+      summary: Get Owner Projects
+      description: Retrieves all projects for a given owner.
+      tags:
+      - Projects
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+    post:
+      operationId: createProject
+      summary: Create Project
+      description: Creates a new project for an owner.
+      tags:
+      - Projects
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /projects/{owner}/{project}:
+    get:
+      operationId: getProject
+      summary: Get Project
+      description: Retrieves a specific project.
+      tags:
+      - Projects
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    delete:
+      operationId: deleteProject
+      summary: Delete Project
+      description: Deletes a project.
+      tags:
+      - Projects
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project deleted
+  /projects/{owner}/{project}/apis:
+    post:
+      operationId: addApiToProject
+      summary: Add API To Project
+      description: Adds an API to a project.
+      tags:
+      - Projects
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                apiOwner:
+                  type: string
+                apiName:
+                  type: string
+                apiVersion:
+                  type: string
+      responses:
+        '200':
+          description: API added to project
+  /projects/{owner}/{project}/domains:
+    post:
+      operationId: addDomainToProject
+      summary: Add Domain To Project
+      description: Adds a domain to a project.
+      tags:
+      - Projects
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domainOwner:
+                  type: string
+                domainName:
+                  type: string
+                domainVersion:
+                  type: string
+      responses:
+        '200':
+          description: Domain added to project
+components:
+  schemas:
+    ProjectRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        owner:
+          type: string
+        apis:
+          type: array
+          items:
+            type: string
+        domains:
+          type: array
+          items:
+            type: string
+        created:
+          type: string
+          format: date-time
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization

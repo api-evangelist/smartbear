@@ -1,0 +1,248 @@
+openapi: 3.0.3
+info:
+  title: SmartBear SwaggerHub APIs Integrations API
+  description: The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations on the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating, publishing, and versioning APIs. The API also supports organization management, member access control, and integration configuration with third-party services.
+  version: 1.0.0
+  termsOfService: https://smartbear.com/terms-of-use/
+  contact:
+    name: SmartBear Support
+    url: https://support.smartbear.com/swaggerhub/
+  license:
+    name: SmartBear License
+    url: https://smartbear.com/terms-of-use/
+servers:
+- url: https://api.swaggerhub.com
+  description: SwaggerHub SaaS
+security:
+- ApiKeyAuth: []
+tags:
+- name: Integrations
+  description: Manage API integrations with third-party services
+paths:
+  /apis/{owner}/{api}/{version}/integrations:
+    get:
+      operationId: getApiIntegrations
+      summary: Get API Integrations
+      description: Lists all integrations configured for an API version.
+      tags:
+      - Integrations
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: api
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of integrations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Integration'
+    post:
+      operationId: createApiIntegration
+      summary: Create API Integration
+      description: Creates a new integration for an API version.
+      tags:
+      - Integrations
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: api
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationConfig'
+      responses:
+        '201':
+          description: Integration created
+  /apis/{owner}/{api}/{version}/integrations/{integrationId}:
+    get:
+      operationId: getApiIntegration
+      summary: Get API Integration
+      description: Retrieves a specific integration configuration.
+      tags:
+      - Integrations
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: api
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: integrationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Integration details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Integration'
+    put:
+      operationId: updateApiIntegration
+      summary: Update API Integration
+      description: Updates an existing integration configuration.
+      tags:
+      - Integrations
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: api
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: integrationId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationConfig'
+      responses:
+        '200':
+          description: Integration updated
+    delete:
+      operationId: deleteApiIntegration
+      summary: Delete API Integration
+      description: Deletes a specific integration.
+      tags:
+      - Integrations
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: api
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: integrationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Integration deleted
+  /apis/{owner}/{api}/{version}/integrations/{integrationId}/execute:
+    post:
+      operationId: executeApiIntegration
+      summary: Execute API Integration
+      description: Manually triggers an integration execution.
+      tags:
+      - Integrations
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: api
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: integrationId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Integration executed
+components:
+  schemas:
+    IntegrationConfig:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        enabled:
+          type: boolean
+        config:
+          type: object
+          additionalProperties: true
+    Integration:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        enabled:
+          type: boolean
+        config:
+          type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization

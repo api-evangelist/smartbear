@@ -1,0 +1,188 @@
+openapi: 3.0.3
+info:
+  title: SmartBear SwaggerHub APIs Domains API
+  description: The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations on the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating, publishing, and versioning APIs. The API also supports organization management, member access control, and integration configuration with third-party services.
+  version: 1.0.0
+  termsOfService: https://smartbear.com/terms-of-use/
+  contact:
+    name: SmartBear Support
+    url: https://support.smartbear.com/swaggerhub/
+  license:
+    name: SmartBear License
+    url: https://smartbear.com/terms-of-use/
+servers:
+- url: https://api.swaggerhub.com
+  description: SwaggerHub SaaS
+security:
+- ApiKeyAuth: []
+tags:
+- name: Domains
+  description: Manage reusable domain definitions
+paths:
+  /domains/{owner}:
+    get:
+      operationId: getOwnerDomains
+      summary: Get Owner Domains
+      description: Retrieves all domains for a given owner.
+      tags:
+      - Domains
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: List of domains
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApisJson'
+  /domains/{owner}/{domain}/{version}:
+    get:
+      operationId: getDomainDefinition
+      summary: Get Domain Definition
+      description: Retrieves the definition for a specific domain version.
+      tags:
+      - Domains
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Domain definition
+          content:
+            application/yaml:
+              schema:
+                type: string
+    post:
+      operationId: saveDomainDefinition
+      summary: Create Or Update Domain
+      description: Creates or updates a domain definition.
+      tags:
+      - Domains
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/yaml:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Domain updated
+        '201':
+          description: Domain created
+    delete:
+      operationId: deleteDomainVersion
+      summary: Delete Domain Version
+      description: Deletes a specific domain version.
+      tags:
+      - Domains
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Domain version deleted
+components:
+  schemas:
+    ApiEntry:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        swaggerUrl:
+          type: string
+        url:
+          type: string
+        versions:
+          type: array
+          items:
+            type: string
+        owner:
+          type: string
+        isPrivate:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+    ApisJson:
+      type: object
+      properties:
+        offset:
+          type: integer
+        totalCount:
+          type: integer
+        apis:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiEntry'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
