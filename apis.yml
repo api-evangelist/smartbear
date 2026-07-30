@@ -7,6 +7,19 @@ description: >-
   developer API enables programmatic access to manage API definitions, automate lifecycle workflows, and integrate
   SwaggerHub with CI/CD pipelines and third-party services.
 url: https://raw.githubusercontent.com/api-evangelist/smartbear/refs/heads/main/apis.yml
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Enterprise (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 created: '2025-01-08'
 modified: '2026-05-19'
 specificationVersion: '0.19'
@@ -19,35 +32,10 @@ tags:
 - Monitoring
 - Platform
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/smartbear.png
 access: 3rd-Party
 position: Consuming
 apis:
-- aid: smartbear:swaggerhub
-  name: SwaggerHub API
-  tags:
-  - API Design
-  - API Documentation
-  - Collaboration
-  - OpenAPI
-  - Governance
-  humanURL: https://swagger.io/product/
-  properties:
-  - url: https://support.smartbear.com/swaggerhub/docs/en/index.html
-    type: Documentation
-  - url: https://swagger.io/product/pricing/
-    type: Pricing
-  - url: https://github.com/SmartBear/swaggerhub-cli
-    type: GitHubRepository
-  - url: https://openapi/smartbear-swaggerhub-openapi.yml
-    type: OpenAPI
-  - url: graphql/smartbear-graphql.md
-    type: GraphQL
-  description: >-
-    The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations on
-    the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating,
-    publishing, and versioning APIs. Base URL: https://api.swaggerhub.com. Authentication via API key in the
-    Authorization header.
 - aid: smartbear:readyapi
   name: ReadyAPI
   tags:
@@ -62,9 +50,9 @@ apis:
   - url: https://github.com/SmartBear/readyapi4j
     type: GitHubRepository
   description: >-
-    ReadyAPI is SmartBear's API quality platform for functional, security, and performance testing. It supports
-    RESTful, GraphQL, and other API standards, and is used by more than 250,000 users running more than 2 million
-    tests per month.
+    ReadyAPI is SmartBear's API quality platform for functional, security, and performance testing. It
+    supports RESTful, GraphQL, and other API standards, and is used by more than 250,000 users running
+    more than 2 million tests per month.
 - aid: smartbear:pactflow
   name: PactFlow
   tags:
@@ -79,9 +67,94 @@ apis:
   - url: https://developer.smartbear.com/pactflow/default/pactflow_saas_api
     type: APIReference
   description: >-
-    PactFlow is SmartBear's contract testing platform that ensures API changes do not break consumer applications. It
-    integrates with SwaggerHub for bi-directional contract testing and uses REST principles with predictable
+    PactFlow is SmartBear's contract testing platform that ensures API changes do not break consumer applications.
+    It integrates with SwaggerHub for bi-directional contract testing and uses REST principles with predictable
     resource-oriented URLs. Base URL: https://{account}.pactflow.io.
+- aid: smartbear:smartbear-apis-api
+  name: SmartBear APIs API
+  description: Manage API definitions and versions
+  humanURL: https://swagger.io/product/
+  tags:
+  - APIs
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-apis-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: GraphQL
+    url: graphql/smartbear-graphql.md
+- aid: smartbear:smartbear-domains-api
+  name: SmartBear Domains API
+  description: Manage reusable domain definitions
+  humanURL: https://swagger.io/product/
+  tags:
+  - Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-domains-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: GraphQL
+    url: graphql/smartbear-graphql.md
+- aid: smartbear:smartbear-integrations-api
+  name: SmartBear Integrations API
+  description: Manage API integrations with third-party services
+  humanURL: https://swagger.io/product/
+  tags:
+  - Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-integrations-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: GraphQL
+    url: graphql/smartbear-graphql.md
+- aid: smartbear:smartbear-organizations-api
+  name: SmartBear Organizations API
+  description: Manage organizations and members
+  humanURL: https://swagger.io/product/
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: GraphQL
+    url: graphql/smartbear-graphql.md
+- aid: smartbear:smartbear-projects-api
+  name: SmartBear Projects API
+  description: Manage SwaggerHub projects
+  humanURL: https://swagger.io/product/
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-projects-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: GraphQL
+    url: graphql/smartbear-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/smartbear-agentic-access.yml
