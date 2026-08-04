@@ -1,0 +1,22 @@
+{
+  "provider": "smartbear",
+  "sources": [
+    "smartbear-apis-api-openapi.yml",
+    "smartbear-domains-api-openapi.yml",
+    "smartbear-integrations-api-openapi.yml",
+    "smartbear-organizations-api-openapi.yml",
+    "smartbear-projects-api-openapi.yml"
+  ],
+  "outputs": [
+    "smartbear-apis-api-openapi.yml",
+    "smartbear-domains-api-openapi.yml",
+    "smartbear-integrations-api-openapi.yml",
+    "smartbear-organizations-api-openapi.yml",
+    "smartbear-projects-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
