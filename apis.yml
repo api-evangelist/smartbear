@@ -156,6 +156,9 @@ apis:
   - type: GraphQL
     url: graphql/smartbear-graphql.md
 common:
+- type: License
+  name: Apache-2.0
+  url: https://github.com/SmartBear/swaggerhub-cli/blob/main/LICENSE
 - type: AgenticAccess
   url: agentic-access/smartbear-agentic-access.yml
 - type: TrustCenter
@@ -183,11 +186,9 @@ common:
 - type: Pricing
   url: https://swagger.io/product/pricing/
 - type: OpenAPI
-  url: openapi/smartbear-swaggerhub-openapi.yml
+  url: openapi/_original/smartbear-swaggerhub-openapi.yml
 - type: Spectral
   url: rules/smartbear-rules.yml
-- type: Capabilities
-  url: capabilities/api-design-and-governance.yaml
 - type: JSONSchema
   url: json-schema/smartbear-api-entry-schema.json
 - type: JSONSchema
