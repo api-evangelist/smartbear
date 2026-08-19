@@ -1,0 +1,389 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SmartBear SwaggerHub APIs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Owner APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swaggerhub.com/apis/:owner",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path",
+                "description": "Username or organization name"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ]
+          },
+          "docs": "Retrieves all APIs for a given owner (user or organization)."
+        },
+        {
+          "info": {
+            "name": "Get API Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the list of versions for a given API."
+        },
+        {
+          "info": {
+            "name": "Create Or Update API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version identifier"
+              },
+              {
+                "name": "isPrivate",
+                "value": "",
+                "type": "query",
+                "description": "Set API visibility to private"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API or updates an existing API version."
+        },
+        {
+          "info": {
+            "name": "Delete API",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified API and all its versions."
+        },
+        {
+          "info": {
+            "name": "Get API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api/:version",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the OpenAPI definition for a specific API version."
+        },
+        {
+          "info": {
+            "name": "Delete API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api/:version",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a specific version of an API."
+        },
+        {
+          "info": {
+            "name": "Download API Definition As YAML",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api/:version/swagger.yaml",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Downloads the API definition as YAML format."
+        },
+        {
+          "info": {
+            "name": "Download API Definition As JSON",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api/:version/swagger.json",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Downloads the API definition as JSON format."
+        },
+        {
+          "info": {
+            "name": "Publish API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api/:version/publish",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Publishes a specific version of an API."
+        },
+        {
+          "info": {
+            "name": "Unpublish API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api/:version/unpublish",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unpublishes a specific version of an API."
+        },
+        {
+          "info": {
+            "name": "Set Default API Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.swaggerhub.com/apis/:owner/:api/:version/default",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Sets the specified version as the default for the API."
+        },
+        {
+          "info": {
+            "name": "Search APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.swaggerhub.com/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Searches the SwaggerHub public API catalog."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
