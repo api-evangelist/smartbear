@@ -74,7 +74,8 @@ apis:
   name: SmartBear APIs API
   description: Manage API definitions and versions
   humanURL: https://swagger.io/product/
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
@@ -109,6 +110,8 @@ apis:
   description: Manage API integrations with third-party services
   humanURL: https://swagger.io/product/
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
@@ -126,6 +129,8 @@ apis:
   description: Manage organizations and members
   humanURL: https://swagger.io/product/
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -143,6 +148,8 @@ apis:
   description: Manage SwaggerHub projects
   humanURL: https://swagger.io/product/
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
