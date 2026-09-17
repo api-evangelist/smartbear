@@ -85,24 +85,6 @@ apis:
     PactFlow is SmartBear's contract testing platform that ensures API changes do not break consumer applications.
     It integrates with SwaggerHub for bi-directional contract testing and uses REST principles with predictable
     resource-oriented URLs. Base URL: https://{account}.pactflow.io.
-- aid: smartbear:smartbear-apis-api
-  name: SmartBear APIs API
-  description: Manage API definitions and versions
-  humanURL: https://swagger.io/product/
-  tags: []
-  tags_raw:
-  - APIs
-  properties:
-  - type: OpenAPI
-    url: openapi/smartbear-apis-api-openapi.yml
-  - type: Documentation
-    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
-  - type: Pricing
-    url: https://swagger.io/product/pricing/
-  - type: GitHubRepository
-    url: https://github.com/SmartBear/swaggerhub-cli
-  - type: GraphQL
-    url: graphql/smartbear-graphql.md
 - aid: smartbear:smartbear-domains-api
   name: SmartBear Domains API
   description: Manage reusable domain definitions
@@ -169,6 +151,23 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/smartbear-projects-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: GraphQL
+    url: graphql/smartbear-graphql.md
+- aid: smartbear:smartbear-apis-api
+  name: SmartBear AP Is API
+  description: Manage API definitions and versions
+  humanURL: https://smartbear.com/product/ready-api/overview/
+  tags:
+  - APIs
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-apis-api-openapi.yml
   - type: Documentation
     url: https://support.smartbear.com/swaggerhub/docs/en/index.html
   - type: Pricing
