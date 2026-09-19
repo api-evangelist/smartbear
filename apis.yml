@@ -163,7 +163,8 @@ apis:
   name: SmartBear AP Is API
   description: Manage API definitions and versions
   humanURL: https://smartbear.com/product/ready-api/overview/
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
