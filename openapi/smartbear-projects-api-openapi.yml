@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: SmartBear SwaggerHub APIs Projects API
+  title: SmartBear SwaggerHub Projects API
   description: The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations on the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating, publishing, and versioning APIs. The API also supports organization management, member access control, and integration configuration with third-party services.
   version: 1.0.0
   termsOfService: https://smartbear.com/terms-of-use/
@@ -181,15 +181,6 @@ paths:
           description: Domain added to project
 components:
   schemas:
-    ProjectRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
     Project:
       type: object
       properties:
@@ -212,6 +203,15 @@ components:
         created:
           type: string
           format: date-time
+    ProjectRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
