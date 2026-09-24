@@ -1,1 +1,0 @@
-# SmartBear GraphQL API
