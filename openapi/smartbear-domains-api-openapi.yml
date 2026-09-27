@@ -141,6 +141,17 @@ paths:
           description: Domain version deleted
 components:
   schemas:
+    ApisJson:
+      type: object
+      properties:
+        offset:
+          type: integer
+        totalCount:
+          type: integer
+        apis:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiEntry'
     ApiEntry:
       type: object
       properties:
@@ -170,17 +181,6 @@ components:
           type: array
           items:
             type: string
-    ApisJson:
-      type: object
-      properties:
-        offset:
-          type: integer
-        totalCount:
-          type: integer
-        apis:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiEntry'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

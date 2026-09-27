@@ -216,18 +216,6 @@ paths:
           description: Integration executed
 components:
   schemas:
-    IntegrationConfig:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        enabled:
-          type: boolean
-        config:
-          type: object
-          additionalProperties: true
     Integration:
       type: object
       properties:
@@ -241,6 +229,18 @@ components:
           type: boolean
         config:
           type: object
+    IntegrationConfig:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        enabled:
+          type: boolean
+        config:
+          type: object
+          additionalProperties: true
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

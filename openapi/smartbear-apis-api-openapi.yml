@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: SmartBear SwaggerHub AP Is API
+  title: SmartBear SwaggerHub APIs API
   description: The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations on the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating, publishing, and versioning APIs. The API also supports organization management, member access control, and integration configuration with third-party services.
   version: 1.0.0
   termsOfService: https://smartbear.com/terms-of-use/
@@ -435,6 +435,17 @@ paths:
                 $ref: '#/components/schemas/ApisJson'
 components:
   schemas:
+    ApisJson:
+      type: object
+      properties:
+        offset:
+          type: integer
+        totalCount:
+          type: integer
+        apis:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiEntry'
     ApiEntry:
       type: object
       properties:
@@ -464,17 +475,6 @@ components:
           type: array
           items:
             type: string
-    ApisJson:
-      type: object
-      properties:
-        offset:
-          type: integer
-        totalCount:
-          type: integer
-        apis:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiEntry'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
