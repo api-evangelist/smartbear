@@ -181,15 +181,6 @@ paths:
           description: Domain added to project
 components:
   schemas:
-    ProjectRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
     Project:
       type: object
       properties:
@@ -212,6 +203,15 @@ components:
         created:
           type: string
           format: date-time
+    ProjectRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
