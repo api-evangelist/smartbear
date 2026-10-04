@@ -1,12 +1,14 @@
 aid: smartbear
+
 name: SmartBear
-description: >-
-  SmartBear is a software company that provides AI-powered tools for API lifecycle management including design, testing,
-  documentation, and governance. Their product portfolio includes SwaggerHub for API design and documentation, ReadyAPI
-  for API testing, PactFlow for contract testing, and other tools for software quality and performance. SmartBear's
-  developer API enables programmatic access to manage API definitions, automate lifecycle workflows, and integrate
-  SwaggerHub with CI/CD pipelines and third-party services.
+
+description: SmartBear is a software company that provides AI-powered tools for API lifecycle management including design, testing, documentation,
+  and governance. Their product portfolio includes SwaggerHub for API design and documentation, ReadyAPI for API testing, PactFlow for contract
+  testing, and other tools for software quality and performance. SmartBear's developer API enables programmatic access to manage API definitions,
+  automate lifecycle workflows, and integrate SwaggerHub with CI/CD pipelines and third-party services.
+
 url: https://raw.githubusercontent.com/api-evangelist/smartbear/refs/heads/main/apis.yml
+
 deliveryModel:
   model: open-core
   license: Apache-2.0
@@ -21,6 +23,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: enterprise
   onboarding: self-serve
@@ -34,9 +37,13 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 created: '2025-01-08'
+
 modified: '2026-05-19'
+
 specificationVersion: '0.23'
+
 tags:
 - API Design
 - API Documentation
@@ -47,128 +54,64 @@ tags:
 - Monitoring
 - Platform
 - Testing
+
 kind: contract
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/smartbear.png
+
 access: 3rd-Party
+
 position: Consuming
-apis:
-- aid: smartbear:readyapi
-  name: ReadyAPI
-  tags:
-  - API Testing
-  - Performance Testing
-  - Security Testing
-  - Functional Testing
-  humanURL: https://smartbear.com/product/ready-api/overview/
-  properties:
-  - url: https://support.smartbear.com/readyapi/docs/
-    type: Documentation
-  - url: https://github.com/SmartBear/readyapi4j
-    type: GitHubRepository
-  description: >-
-    ReadyAPI is SmartBear's API quality platform for functional, security, and performance testing. It
-    supports RESTful, GraphQL, and other API standards, and is used by more than 250,000 users running
-    more than 2 million tests per month.
-- aid: smartbear:pactflow
-  name: PactFlow
-  tags:
-  - API Testing
-  - CI/CD
-  - Contract Testing
-  - Consumer-Driven Contracts
-  humanURL: https://pactflow.io/
-  properties:
-  - url: https://docs.pactflow.io/
-    type: Documentation
-  - url: https://developer.smartbear.com/pactflow/default/pactflow_saas_api
-    type: APIReference
-  description: >-
-    PactFlow is SmartBear's contract testing platform that ensures API changes do not break consumer applications.
-    It integrates with SwaggerHub for bi-directional contract testing and uses REST principles with predictable
-    resource-oriented URLs. Base URL: https://{account}.pactflow.io.
-- aid: smartbear:smartbear-domains-api
-  name: SmartBear Domains API
-  description: Manage reusable domain definitions
-  humanURL: https://swagger.io/product/
-  tags:
-  - Domains
-  properties:
-  - type: OpenAPI
-    url: openapi/smartbear-domains-api-openapi.yml
-  - type: Documentation
-    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
-  - type: Pricing
-    url: https://swagger.io/product/pricing/
-  - type: GitHubRepository
-    url: https://github.com/SmartBear/swaggerhub-cli
-- aid: smartbear:smartbear-integrations-api
-  name: SmartBear Integrations API
-  description: Manage API integrations with third-party services
-  humanURL: https://swagger.io/product/
-  tags:
-  - Integration
-  tags_raw:
-  - Integrations
-  properties:
-  - type: OpenAPI
-    url: openapi/smartbear-integrations-api-openapi.yml
-  - type: Documentation
-    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
-  - type: Pricing
-    url: https://swagger.io/product/pricing/
-  - type: GitHubRepository
-    url: https://github.com/SmartBear/swaggerhub-cli
-- aid: smartbear:smartbear-organizations-api
-  name: SmartBear Organizations API
-  description: Manage organizations and members
-  humanURL: https://swagger.io/product/
-  tags:
-  - Organization
-  tags_raw:
-  - Organizations
-  properties:
-  - type: OpenAPI
-    url: openapi/smartbear-organizations-api-openapi.yml
-  - type: Documentation
-    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
-  - type: Pricing
-    url: https://swagger.io/product/pricing/
-  - type: GitHubRepository
-    url: https://github.com/SmartBear/swaggerhub-cli
-- aid: smartbear:smartbear-projects-api
-  name: SmartBear Projects API
-  description: Manage SwaggerHub projects
-  humanURL: https://swagger.io/product/
-  tags:
-  - Project
-  tags_raw:
-  - Projects
-  properties:
-  - type: OpenAPI
-    url: openapi/smartbear-projects-api-openapi.yml
-  - type: Documentation
-    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
-  - type: Pricing
-    url: https://swagger.io/product/pricing/
-  - type: GitHubRepository
-    url: https://github.com/SmartBear/swaggerhub-cli
-- aid: smartbear:smartbear-apis-api
-  name: SmartBear APIs API
-  description: Manage API definitions and versions
-  humanURL: https://smartbear.com/product/ready-api/overview/
-  tags: []
-  tags_raw:
-  - APIs
-  properties:
-  - type: OpenAPI
-    url: openapi/smartbear-apis-api-openapi.yml
-  - type: Documentation
-    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
-  - type: Pricing
-    url: https://swagger.io/product/pricing/
-  - type: GitHubRepository
-    url: https://github.com/SmartBear/swaggerhub-cli
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
 common:
+- type: FinOps
+  url: finops/smartbear-finops.yml
+- type: RateLimits
+  url: rate-limits/smartbear-rate-limits.yml
+- type: Plans
+  url: plans/smartbear-plans-pricing.yml
+- type: Spectral
+  url: rules/smartbear-jsonschema-spectral-rules.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/smartbear-data-model.yml
+- type: Conventions
+  url: conventions/smartbear-conventions.yml
+- type: Compliance
+  url: https://trust.smartbear.com/
+- type: ErrorCatalog
+  url: errors/smartbear-problem-types.yml
+- type: Conformance
+  url: conformance/smartbear-conformance.yml
+- type: LLMsTxt
+  url: llms/smartbear-llms.txt
+- type: SecurityTxt
+  url: well-known/smartbear-alertsite-security.txt
+- type: WellKnown
+  url: well-known/smartbear-well-known.yml
+- type: Hosts
+  url: hosts/smartbear-hosts.yml
+- type: Vendors
+  url: vendors/smartbear-vendors.yml
+- type: SDKs
+  url: packages/smartbear-packages.yml
+- type: Packages
+  url: packages/smartbear-packages.yml
+- type: TermsOfService
+  url: https://smartbear.com/terms-of-use/
+- type: Security
+  url: https://smartbear.com/security/
+- type: PrivacyPolicy
+  url: https://smartbear.com/privacy/
+- type: Newsroom
+  url: https://smartbear.com/company/news/
+- type: Leadership
+  url: https://smartbear.com/company/leadership/
 - type: IssueTracker
   url: https://github.com/SmartBear/swaggerhub-cli/issues
 - type: Releases
@@ -223,8 +166,140 @@ common:
 - name: MCP Server
   url: https://github.com/SmartBear/smartbear-mcp
   type: MCPServer
+
+apis:
+- aid: smartbear:readyapi
+  name: ReadyAPI
+  tags:
+  - API Testing
+  - Performance Testing
+  - Security Testing
+  - Functional Testing
+  humanURL: https://smartbear.com/product/ready-api/overview/
+  properties:
+  - url: https://support.smartbear.com/readyapi/docs/
+    type: Documentation
+  - url: https://github.com/SmartBear/readyapi4j
+    type: GitHubRepository
+  description: ReadyAPI is SmartBear's API quality platform for functional, security, and performance testing. It supports RESTful, GraphQL, and
+    other API standards, and is used by more than 250,000 users running more than 2 million tests per month.
+- aid: smartbear:pactflow
+  name: PactFlow
+  tags:
+  - API Testing
+  - CI/CD
+  - Contract Testing
+  - Consumer-Driven Contracts
+  humanURL: https://pactflow.io/
+  properties:
+  - url: https://docs.pactflow.io/
+    type: Documentation
+  - url: https://developer.smartbear.com/pactflow/default/pactflow_saas_api
+    type: APIReference
+  description: 'PactFlow is SmartBear''s contract testing platform that ensures API changes do not break consumer applications. It integrates
+    with SwaggerHub for bi-directional contract testing and uses REST principles with predictable resource-oriented URLs. Base URL: https://{account}.pactflow.io.'
+- aid: smartbear:smartbear-domains-api
+  name: SmartBear Domains API
+  description: Manage reusable domain definitions
+  humanURL: https://swagger.io/product/
+  tags:
+  - Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-domains-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: JSONSchema
+    url: json-schema/smartbear-apis-json-schema.json
+- aid: smartbear:smartbear-integrations-api
+  name: SmartBear Integrations API
+  description: Manage API integrations with third-party services
+  humanURL: https://swagger.io/product/
+  tags:
+  - Integration
+  tags_raw:
+  - Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-integrations-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: JSONSchema
+    url: json-schema/smartbear-integration-config-schema.json
+  - type: JSONSchema
+    url: json-schema/smartbear-integration-schema.json
+- aid: smartbear:smartbear-organizations-api
+  name: SmartBear Organizations API
+  description: Manage organizations and members
+  humanURL: https://swagger.io/product/
+  tags:
+  - Organization
+  tags_raw:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: JSONSchema
+    url: json-schema/smartbear-member-schema.json
+- aid: smartbear:smartbear-projects-api
+  name: SmartBear Projects API
+  description: Manage SwaggerHub projects
+  humanURL: https://swagger.io/product/
+  tags:
+  - Project
+  tags_raw:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-projects-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: JSONSchema
+    url: json-schema/smartbear-project-schema.json
+  - type: JSONSchema
+    url: json-schema/smartbear-project-request-schema.json
+- aid: smartbear:smartbear-apis-api
+  name: SmartBear APIs API
+  description: Manage API definitions and versions
+  humanURL: https://smartbear.com/product/ready-api/overview/
+  tags: []
+  tags_raw:
+  - APIs
+  properties:
+  - type: OpenAPI
+    url: openapi/smartbear-apis-api-openapi.yml
+  - type: Documentation
+    url: https://support.smartbear.com/swaggerhub/docs/en/index.html
+  - type: Pricing
+    url: https://swagger.io/product/pricing/
+  - type: GitHubRepository
+    url: https://github.com/SmartBear/swaggerhub-cli
+  - type: JSONSchema
+    url: json-schema/smartbear-apis-json-schema.json
+
 integrations:
 - name: logo
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-10-04'
+  status: enriched
+  artifacts_added: 23
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local
