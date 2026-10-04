@@ -169,6 +169,9 @@ apis:
   - type: GitHubRepository
     url: https://github.com/SmartBear/swaggerhub-cli
 common:
+- type: CapabilityMap
+  url: capabilities/smartbear-capability-edges.yml
+  name: SmartBear Business Capability Map
 - type: IssueTracker
   url: https://github.com/SmartBear/swaggerhub-cli/issues
 - type: Releases
