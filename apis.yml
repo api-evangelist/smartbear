@@ -169,6 +169,12 @@ apis:
   - type: GitHubRepository
     url: https://github.com/SmartBear/swaggerhub-cli
 common:
+- type: Plans
+  url: plans/smartbear-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/smartbear-rate-limits.yml
+- type: FinOps
+  url: finops/smartbear-finops.yml
 - type: CapabilityMap
   url: capabilities/smartbear-capability-edges.yml
   name: SmartBear Business Capability Map
