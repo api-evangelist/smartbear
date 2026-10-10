@@ -44,6 +44,9 @@ modified: '2026-05-19'
 
 specificationVersion: '0.23'
 
+x-docs-platform: stoplight
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-04
 tags:
 - API Design
 - API Documentation
@@ -191,6 +194,17 @@ apis:
   - Contract Testing
   - Consumer-Driven Contracts
   humanURL: https://pactflow.io/
+  description: PactFlow provides a SaaS platform for contract testing and consumer‑driven contract management.
+  properties:
+  - url: https://developer.smartbear.com/pactflow/default/pactflow_saas_api
+    type: Documentation
+  name: PactFlow
+  tags:
+  - API Testing
+  - CI/CD
+  - Contract Testing
+  - Consumer-Driven Contracts
+  humanURL: https://pactflow.io/
   properties:
   - url: https://docs.pactflow.io/
     type: Documentation
@@ -297,9 +311,3 @@ apis:
 
 integrations:
 - name: logo
-x-enrichment:
-  date: '2026-10-04'
-  status: enriched
-  artifacts_added: 23
-  pass: modular-v1
-  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

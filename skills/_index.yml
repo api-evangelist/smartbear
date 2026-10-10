@@ -1,0 +1,26 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/smartbear-apis-api-openapi.yml
+skills:
+- file: skills/smartbear-get-api-definition.md
+  name: smartbear-get-api-definition
+  api: openapi/smartbear-apis-api-openapi.yml
+  operations:
+  - getOwnerApis
+  - getApiVersions
+  - getDefinition
+- file: skills/smartbear-create-and-execute-integration.md
+  name: smartbear-create-and-execute-integration
+  api: openapi/smartbear-integrations-api-openapi.yml
+  operations:
+  - createApiIntegration
+  - executeApiIntegration
+- file: skills/smartbear-project-setup.md
+  name: smartbear-project-setup
+  api: openapi/smartbear-projects-api-openapi.yml
+  operations:
+  - createProject
+  - addApiToProject
+  - addDomainToProject
+  - getProject

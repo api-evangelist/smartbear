@@ -1,0 +1,15 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://smartbear.com/learn/api-design/understanding-rest-headers-and-parameters/
+sources:
+- https://smartbear.com/learn/api-design/understanding-rest-headers-and-parameters/
+- https://smartbear.com/learn/api-testing/authentication-best-practices/
+idempotency:
+  coverage: none
+  evidence: The pages do not describe an idempotency‑key header or any idempotency mechanism for write operations.
+pagination:
+  evidence: No pagination style, parameters, or response fields are described.
+authentication: 'Supported styles mentioned: API‑Key, Basic/Digest/NTLM, WS‑Security (SAML, Username Tokens), OAuth 1.x/2. No single required
+  style is mandated.'
+docs: https://smartbear.com/learn/api-design/understanding-rest-headers-and-parameters/

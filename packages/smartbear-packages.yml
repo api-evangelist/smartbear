@@ -1,0 +1,34 @@
+generated: '2026-10-04'
+method: searched
+source: "https://registry.npmjs.org/-/v1/search?text=smartbear"
+packages:
+  - name: "@smartbear/mcp"
+    registry: "npm"
+    language: "javascript"
+    official: true
+    version: "0.41.3"
+    published: "2026-09-30"
+  - name: "@smartbear/design-system"
+    registry: "npm"
+    language: "javascript"
+    official: true
+    version: "0.9.1"
+    published: "2020-12-17"
+  - name: "@smartbear/visualtest-cypress"
+    registry: "npm"
+    language: "javascript"
+    official: true
+    version: "1.10.3"
+    published: "2026-08-12"
+  - name: "@smartbear/visualtest-playwright"
+    registry: "npm"
+    language: "javascript"
+    official: true
+    version: "1.3.2"
+    published: "2026-08-12"
+  - name: "testengine-cli"
+    registry: "npm"
+    language: "javascript"
+    official: false
+    version: "1.16.1"
+    published: "2026-06-22"

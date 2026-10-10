@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/smartbear/main/json-schema/smartbear-apis-json-schema.json",
+  "title": "ApisJson",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/smartbear-domains-api-openapi.yml#/components/schemas/ApisJson",
+  "type": "object",
+  "properties": {
+    "offset": {
+      "type": "integer"
+    },
+    "totalCount": {
+      "type": "integer"
+    },
+    "apis": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApiEntry"
+      }
+    }
+  },
+  "$defs": {
+    "ApiEntry": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "swaggerUrl": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "versions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "owner": {
+          "type": "string"
+        },
+        "isPrivate": {
+          "type": "boolean"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

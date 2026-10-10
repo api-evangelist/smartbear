@@ -1,0 +1,163 @@
+generated: '2026-10-05'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/smartbear-apis-api-openapi.yml
+- openapi/smartbear-domains-api-openapi.yml
+- openapi/smartbear-integrations-api-openapi.yml
+- openapi/smartbear-organizations-api-openapi.yml
+- openapi/smartbear-projects-api-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: No MCP server was found. The pre-flight posted tools/list to /mcp on api.swaggerhub.com, api.smartbear.com, api.swagger.io, api.pactflow.io;
+  verdict hold-unverified. Candidate tools below are derived from the 29 operation(s) in the provider's own OpenAPI (29 listed); they describe
+  what a server WOULD expose, not one that exists.
+tools:
+- name: get_owner_apis
+  operationId: getOwnerApis
+  method: GET
+  path: /apis/{owner}
+  description: Get Owner APIs
+- name: get_owner_domains
+  operationId: getOwnerDomains
+  method: GET
+  path: /domains/{owner}
+  description: Get Owner Domains
+- name: get_api_integrations
+  operationId: getApiIntegrations
+  method: GET
+  path: /apis/{owner}/{api}/{version}/integrations
+  description: Get API Integrations
+- name: get_organization_members
+  operationId: getOrganizationMembers
+  method: GET
+  path: /orgs/{org}/members
+  description: Get Organization Members
+- name: get_owner_projects
+  operationId: getOwnerProjects
+  method: GET
+  path: /projects/{owner}
+  description: Get Owner Projects
+- name: get_api_versions
+  operationId: getApiVersions
+  method: GET
+  path: /apis/{owner}/{api}
+  description: Get API Versions
+- name: get_domain_definition
+  operationId: getDomainDefinition
+  method: GET
+  path: /domains/{owner}/{domain}/{version}
+  description: Get Domain Definition
+- name: create_api_integration
+  operationId: createApiIntegration
+  method: POST
+  path: /apis/{owner}/{api}/{version}/integrations
+  description: Create API Integration
+- name: create_project
+  operationId: createProject
+  method: POST
+  path: /projects/{owner}
+  description: Create Project
+- name: save_definition
+  operationId: saveDefinition
+  method: POST
+  path: /apis/{owner}/{api}
+  description: Create Or Update API Version
+- name: save_domain_definition
+  operationId: saveDomainDefinition
+  method: POST
+  path: /domains/{owner}/{domain}/{version}
+  description: Create Or Update Domain
+- name: get_api_integration
+  operationId: getApiIntegration
+  method: GET
+  path: /apis/{owner}/{api}/{version}/integrations/{integrationId}
+  description: Get API Integration
+- name: get_project
+  operationId: getProject
+  method: GET
+  path: /projects/{owner}/{project}
+  description: Get Project
+- name: delete_api
+  operationId: deleteApi
+  method: DELETE
+  path: /apis/{owner}/{api}
+  description: Delete API
+- name: delete_domain_version
+  operationId: deleteDomainVersion
+  method: DELETE
+  path: /domains/{owner}/{domain}/{version}
+  description: Delete Domain Version
+- name: update_api_integration
+  operationId: updateApiIntegration
+  method: PUT
+  path: /apis/{owner}/{api}/{version}/integrations/{integrationId}
+  description: Update API Integration
+- name: delete_project
+  operationId: deleteProject
+  method: DELETE
+  path: /projects/{owner}/{project}
+  description: Delete Project
+- name: get_definition
+  operationId: getDefinition
+  method: GET
+  path: /apis/{owner}/{api}/{version}
+  description: Get API Definition
+- name: delete_api_integration
+  operationId: deleteApiIntegration
+  method: DELETE
+  path: /apis/{owner}/{api}/{version}/integrations/{integrationId}
+  description: Delete API Integration
+- name: add_api_to_project
+  operationId: addApiToProject
+  method: POST
+  path: /projects/{owner}/{project}/apis
+  description: Add API To Project
+- name: delete_api_version
+  operationId: deleteApiVersion
+  method: DELETE
+  path: /apis/{owner}/{api}/{version}
+  description: Delete API Version
+- name: execute_api_integration
+  operationId: executeApiIntegration
+  method: POST
+  path: /apis/{owner}/{api}/{version}/integrations/{integrationId}/execute
+  description: Execute API Integration
+- name: add_domain_to_project
+  operationId: addDomainToProject
+  method: POST
+  path: /projects/{owner}/{project}/domains
+  description: Add Domain To Project
+- name: download_definition_yaml
+  operationId: downloadDefinitionYaml
+  method: GET
+  path: /apis/{owner}/{api}/{version}/swagger.yaml
+  description: Download API Definition As YAML
+- name: download_definition_json
+  operationId: downloadDefinitionJson
+  method: GET
+  path: /apis/{owner}/{api}/{version}/swagger.json
+  description: Download API Definition As JSON
+- name: publish_api
+  operationId: publishApi
+  method: POST
+  path: /apis/{owner}/{api}/{version}/publish
+  description: Publish API Version
+- name: unpublish_api
+  operationId: unpublishApi
+  method: POST
+  path: /apis/{owner}/{api}/{version}/unpublish
+  description: Unpublish API Version
+- name: set_default_api_version
+  operationId: setDefaultApiVersion
+  method: PUT
+  path: /apis/{owner}/{api}/{version}/default
+  description: Set Default API Version
+- name: search_apis
+  operationId: searchApis
+  method: GET
+  path: /search
+  description: Search APIs

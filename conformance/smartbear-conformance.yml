@@ -1,0 +1,41 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://smartbear.com/learn/api-testing/security/
+sources:
+- https://smartbear.com/learn/api-testing/security/
+- https://smartbear.com/legal/candidate-privacy-notice/
+- https://smartbear.com/privacy/
+- https://smartbear.com/security/
+standards:
+- id: soc2
+  conforms: true
+  evidence: SOC 2 Service Organization Control
+- id: iso-27001
+  conforms: true
+  evidence: ISO/IEC 27001 Information Security Management
+- id: gdpr
+  conforms: true
+  evidence: GDPR & CCPA Global Privacy Regulations
+- id: ccpa
+  conforms: true
+  evidence: GDPR & CCPA Global Privacy Regulations
+- id: nist-csf
+  conforms: true
+  evidence: NIST CSF Cybersecurity Framework
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: oauth2
+  conforms: false
+  evidence: 'securitySchemes: ApiKeyAuth (apiKey)'
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+- id: pagination
+  conforms: true
+  evidence: list operations take limit, page
+docs: https://smartbear.com/learn/api-testing/security/

@@ -1,0 +1,25 @@
+generated: '2026-10-05'
+source: https://smartbear.com/privacy/
+method: probed
+signals:
+  - name: age_assurance
+    evidence:
+      - source: https://smartbear.com/privacy/
+        http_status: 200
+        fetched: /tmp/privacy.html
+        quote: "The Platform is meant for adults and we will not knowingly collect personal information from any person under the age of 13 without permission from a parent or guardian."
+        note: Indicates COPPA compliance and that data from children under 13 is not collected without consent.
+  - name: data_subject_request
+    evidence:
+      - source: https://smartbear.com/privacy/
+        http_status: 200
+        fetched: /tmp/privacy.html
+        quote: "Depending on where you are located, you may have certain choices about how we use your personal information, including the right to access, receive a copy of, correct, delete, and opt-out of the processing of, your Personal Data."
+        note: Provides data subject rights such as access, correction, deletion, and opt‑out.
+  - name: data_subject_request
+    evidence:
+      - source: https://smartbear.com/privacy/
+        http_status: 200
+        fetched: /tmp/privacy.html
+        quote: "Pursuant to California's Shine the Light statute (Cal. Civ. Code § 1798.83), you can control if we share personal information with third parties for their marketing purposes."
+        note: Specific CCPA/California privacy rights for data subjects.

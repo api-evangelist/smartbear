@@ -1,0 +1,29 @@
+generated: '2026-10-05'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/smartbear-apis-api-openapi.yml
+- openapi/smartbear-domains-api-openapi.yml
+- openapi/smartbear-integrations-api-openapi.yml
+- openapi/smartbear-organizations-api-openapi.yml
+- openapi/smartbear-projects-api-openapi.yml
+format: custom
+envelope:
+  media_type: null
+  schema: null
+coverage:
+  operations: 29
+  statuses_declared: 2
+problems:
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  operations: 9
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: Not Found
+  operations: 4
+  media_types: []
+  schema: null
