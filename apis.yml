@@ -71,6 +71,9 @@ maintainers:
   email: kin@apievangelist.com
 
 common:
+- type: CapabilityMap
+  url: capabilities/smartbear-capability-edges.yml
+  name: SmartBear Business Capability Map
 - type: FinOps
   url: finops/smartbear-finops.yml
 - type: RateLimits
