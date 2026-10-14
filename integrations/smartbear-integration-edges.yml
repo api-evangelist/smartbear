@@ -1,0 +1,84 @@
+generated: '2026-10-14'
+method: searched
+checked:
+- https://marketplace.atlassian.com/
+- https://plugins.jetbrains.com/
+marketplace_apps: []
+edges:
+- partner_name: Atlassian Marketplace
+  partner: atlassian
+  partner_match: aggregator
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.atlassian.com/vendors/17834/smartbear
+  listing_count: 15
+  apps:
+  - Zephyr - Test Management and Automation for Jira
+  - Zephyr Essential - Test Management for Jira
+  - Capture for Jira
+  - Cucumber BDD for Jira
+  - Zephyr Automate - Expanded Automation for Zephyr
+  publisher_name: SmartBear
+  badges:
+  - Cloud Fortified
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Atlassian Marketplace
+  partner: atlassian
+  partner_match: aggregator
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.atlassian.com/vendors/14074/smartbear-software
+  listing_count: 7
+  apps:
+  - QMetry - Test Management for Jira (QTM4J)
+  - QMetry Integration for Jira
+  - QTM4J Integration for Confluence
+  - QTM4J Integration for Bamboo
+  - QMetry EU Integration for Jira
+  publisher_name: SmartBear Software
+  badges:
+  - Cloud Fortified
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Atlassian Marketplace
+  partner: atlassian
+  partner_match: aggregator
+  type: marketplace
+  marketplace: atlassian
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.atlassian.com/vendors/1211884/smartbear-qac
+  listing_count: 1
+  apps:
+  - QAComplete for Jira Test Management
+  publisher_name: SmartBear QAC
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: JetBrains Marketplace
+  partner: jetbrains
+  partner_match: aggregator
+  type: marketplace
+  marketplace: jetbrains
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://plugins.jetbrains.com/vendor/SmartBear
+  listing_count: 1
+  apps:
+  - intellij-swaggerhub
+  publisher_name: SmartBear Software
+  badges:
+  - Verified vendor
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+source:
+- https://marketplace.atlassian.com/
+- https://plugins.jetbrains.com/
