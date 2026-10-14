@@ -3,6 +3,7 @@ method: searched
 checked:
 - https://marketplace.atlassian.com/
 - https://plugins.jetbrains.com/
+- https://registry.modelcontextprotocol.io/v0/servers
 marketplace_apps: []
 edges:
 - partner_name: Atlassian Marketplace
@@ -79,6 +80,39 @@ edges:
   - Verified vendor
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.smartbear
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: com.smartbear/smartbear-mcp
+    register_id: com.smartbear/smartbear-mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - com.smartbear/smartbear-mcp
+    - com.smartbear/swagger-mcp
+    hosted_remote: 2
+    local_package: 1
+    transports:
+      stdio: 1
+      streamable-http: 3
+    auth_declared: 1
+    catalog_declared: false
+    namespace_domains:
+    - smartbear.com
+  matched_by:
+  - namespace-domain+label
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
 source:
 - https://marketplace.atlassian.com/
 - https://plugins.jetbrains.com/
