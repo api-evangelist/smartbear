@@ -95,7 +95,7 @@ edges:
     registered_name: com.smartbear/smartbear-mcp
     register_id: com.smartbear/smartbear-mcp
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
+    detected: '2026-10-15'
   mcp_registry:
     servers:
     - com.smartbear/smartbear-mcp
