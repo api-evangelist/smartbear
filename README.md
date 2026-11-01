@@ -1,4 +1,4 @@
-# SmartBear (smartbear)
+# SmartBear
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,116 +66,191 @@
 
 SmartBear is a software company that provides AI-powered tools for API lifecycle management including design, testing, documentation, and governance. Their product portfolio includes SwaggerHub for API design and documentation, ReadyAPI for API testing, PactFlow for contract testing, and other tools for software quality and performance. SmartBear's developer API enables programmatic access to manage API definitions, automate lifecycle workflows, and integrate SwaggerHub with CI/CD pipelines and third-party services.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/smartbear/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/smartbear/refs/heads/main/apis.yml)
+**Areas:** API Design · API Documentation · API Testing · Contract Testing · Developer Tools · Governance · Monitoring · Platform · Testing
 
-## Scope
+## SmartBear on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for SmartBear is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/smartbear/](https://apis.io/providers/smartbear/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- API Design
-- API Documentation
-- API Testing
-- Contract Testing
-- Governance
-- Monitoring
-- Platform
+- [ReadyAPI](https://apis.io/apis/smartbear/readyapi/) — ReadyAPI is SmartBear's API quality platform for functional, security, and performance testing. It supports RESTful, GraphQL, and other API standards, and…
+- [PactFlow](https://apis.io/apis/smartbear/pactflow/) — PactFlow is SmartBear's contract testing platform that ensures API changes do not break consumer applications. It integrates with SwaggerHub for…
+- [SmartBear Domains API](https://apis.io/apis/smartbear/smartbear-domains-api/) — Manage reusable domain definitions
+- [SmartBear Integrations API](https://apis.io/apis/smartbear/smartbear-integrations-api/) — Manage API integrations with third-party services
+- [SmartBear Organizations API](https://apis.io/apis/smartbear/smartbear-organizations-api/) — Manage organizations and members
+- [SmartBear Projects API](https://apis.io/apis/smartbear/smartbear-projects-api/) — Manage SwaggerHub projects
+- [SmartBear APIs API](https://apis.io/apis/smartbear/smartbear-apis-api/) — Manage API definitions and versions
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### SwaggerHub API
+GraphQL schemas.
 
-The SwaggerHub API provides programmatic access to manage API definitions, domains, projects, and integrations on the SwaggerHub platform. It allows teams to automate API lifecycle management including creating, updating, publishing, and versioning APIs. Base URL: https://api.swaggerhub.com. Authentication via API key in the Authorization header.
+- [Moved to /providers/smartbear/](https://apis.io/graphqls/smartbear/smartbear-graphql/)
 
-- **Human URL:** [https://swagger.io/product/](https://swagger.io/product/)
+#### MCP servers (2)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- API Design
-- API Documentation
-- Collaboration
-- OpenAPI
-- Governance
+- [MCP Server](https://apis.io/servers/smartbear/mcp-server/)
+- [smartbear-mcp.yml](https://apis.io/servers/smartbear/smartbear-mcp-yml/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://support.smartbear.com/swaggerhub/docs/en/index.html)
-- [Pricing](https://swagger.io/product/pricing/)
-- [GitHub Repository](https://github.com/SmartBear/swaggerhub-cli)
-- [OpenAPI](https://openapi/smartbear-swaggerhub-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/smartbear-swaggerhub.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/smartbear-swaggerhub.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### ReadyAPI
+- [Smartbear Agentic Access](https://apis.io/agentic-access/smartbear/smartbear-agentic-access/)
 
-ReadyAPI is SmartBear's API quality platform for functional, security, and performance testing. It supports RESTful, GraphQL, and other API standards, and is used by more than 250,000 users running more than 2 million tests per month.
+#### JSON Schema (7)
 
-- **Human URL:** [https://smartbear.com/product/ready-api/overview/](https://smartbear.com/product/ready-api/overview/)
+The data models the API reads and writes.
 
-#### Tags
+- [SmartBear API Entry](https://apis.io/schemas/smartbear/smartbear-api-entry/)
+- [ApisJson](https://apis.io/schemas/smartbear/smartbear-apis-json/)
+- [SmartBear Integration](https://apis.io/schemas/smartbear/smartbear-integration/)
+- [IntegrationConfig](https://apis.io/schemas/smartbear/smartbear-integration-config/)
+- [Member](https://apis.io/schemas/smartbear/smartbear-member/)
+- [Project](https://apis.io/schemas/smartbear/smartbear-project/)
+- [ProjectRequest](https://apis.io/schemas/smartbear/smartbear-project-request/)
 
-- API Testing
-- Performance Testing
-- Security Testing
-- Functional Testing
+#### JSON Structure (1)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [Documentation](https://support.smartbear.com/readyapi/docs/)
-- [GitHub Repository](https://github.com/SmartBear/readyapi4j)
-- [Postman Collection](collections/smartbear-swaggerhub.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/smartbear-swaggerhub.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Smartbear Swaggerhub Structure](https://apis.io/json-structure/smartbear/smartbear-swaggerhub-structure/)
 
-### PactFlow
+#### JSON-LD (1)
 
-PactFlow is SmartBear's contract testing platform that ensures API changes do not break consumer applications. It integrates with SwaggerHub for bi-directional contract testing and uses REST principles with predictable resource-oriented URLs. Base URL: https://{account}.pactflow.io.
+Linked-data contexts for the provider's vocabulary.
 
-- **Human URL:** [https://pactflow.io/](https://pactflow.io/)
+- [Smartbear Context](https://apis.io/jsonld/smartbear/smartbear-context/)
 
-#### Tags
+#### Vocabulary (1)
 
-- API Testing
-- CI/CD
-- Contract Testing
-- Consumer-Driven Contracts
+The provider's domain terms, defined.
 
-#### Properties
+- [SmartBear Vocabulary](https://apis.io/vocabularies/smartbear/smartbear-vocabulary/)
 
-- [Documentation](https://docs.pactflow.io/)
-- [API Reference](https://developer.smartbear.com/pactflow/default/pactflow_saas_api)
-- [Postman Collection](collections/smartbear-swaggerhub.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/smartbear-swaggerhub.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Examples (2)
 
-## Common Properties
+Example requests and responses.
 
-- [LinkedIn](https://www.linkedin.com/company/smartbear)
+- [Smartbear Create Integration Example](https://apis.io/examples/smartbear/smartbear-create-integration-example/)
+- [Smartbear Get Owner Apis Example](https://apis.io/examples/smartbear/smartbear-get-owner-apis-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [SmartBear SwaggerHub APIs API](https://apis.io/collections/smartbear/open-smartbear-apis-api/)
+- [SmartBear SwaggerHub APIs Domains API](https://apis.io/collections/smartbear/open-smartbear-domains-api/)
+- [SmartBear SwaggerHub APIs Integrations API](https://apis.io/collections/smartbear/open-smartbear-integrations-api/)
+- [SmartBear SwaggerHub APIs Organizations API](https://apis.io/collections/smartbear/open-smartbear-organizations-api/)
+- [SmartBear SwaggerHub APIs Projects API](https://apis.io/collections/smartbear/open-smartbear-projects-api/)
+- [SmartBear SwaggerHub API](https://apis.io/collections/smartbear/open-smartbear-swaggerhub/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [SmartBear — jsonschema rules](https://apis.io/rules/smartbear/smartbear-jsonschema-spectral-rules/)
+- [SmartBear API Rules](https://apis.io/rules/smartbear/smartbear-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Smartbear Authentication](https://apis.io/security/smartbear/smartbear-authentication/)
+- [Smartbear Domain Security](https://apis.io/security/smartbear/smartbear-domain-security/)
+- [Smartbear Trust Center](https://apis.io/security/smartbear/smartbear-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Smartbear Plans Pricing](https://apis.io/plans/smartbear/smartbear-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Smartbear Rate Limits](https://apis.io/rate-limits/smartbear/smartbear-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Smartbear Finops](https://apis.io/finops/smartbear/smartbear-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://smartbear.com/)
-- [Developer Portal](https://developer.smartbear.com/)
 - [Documentation](https://support.smartbear.com/documentation/)
-- [Community](https://community.smartbear.com/)
-- [Blog](https://smartbear.com/blog/)
-- [GitHub Organization](https://github.com/SmartBear)
-- [GitHub Organization](https://github.com/SmartBear-DevRel)
 - [Pricing](https://swagger.io/product/pricing/)
-- [OpenAPI](openapi/smartbear-swaggerhub-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Spectral Rules](rules/smartbear-rules.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
-- [Capabilities](capabilities/api-design-and-governance.yaml)
-- [JSON Schema](json-schema/smartbear-api-entry-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/smartbear-integration-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/smartbear-swaggerhub-structure.json)
-- [JSON-LD](json-ld/smartbear-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](vocabulary/smartbear-vocabulary.yml)
-- [Integrations](https://smartbear.com/integrations/)
-- [M C P Server](https://github.com/SmartBear/smartbear-mcp)
+- [Blog](https://smartbear.com/blog/)
+- [Security](https://smartbear.com/security/)
+- [Compliance](https://trust.smartbear.com/)
+- [Terms of service](https://smartbear.com/terms-of-use/)
+- [Privacy policy](https://smartbear.com/privacy/)
+- [GitHub](https://github.com/SmartBear)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 55.9** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.9 |
+| Contract quality | 59.8 |
+| Contract governance | 45.5 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 51.8 |
+| Access clarity | 52.6 |
+
+**Agent readiness 23.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/smartbear/](https://apis.io/providers/smartbear/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SmartBear: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/smartbear/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
